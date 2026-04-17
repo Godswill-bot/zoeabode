@@ -1,0 +1,56 @@
+import Link from "next/link";
+
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "Library", href: "/library" },
+  { label: "Guides", href: "/guides" },
+  { label: "Admin", href: "/admin" },
+  { label: "Account", href: "/account" },
+];
+
+export function SiteHeader() {
+  return (
+    <header className="sticky top-0 z-40 border-b border-(--border) bg-white/80 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <Link href="/" className="flex items-center gap-3">
+          <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-(--border) bg-white text-sm font-semibold tracking-[0.24em] text-(--text) shadow-[0_10px_30px_rgba(15,23,42,0.05)]">
+            ZA
+          </span>
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-2xl text-(--text)">ZoeAbode</span>
+            <span className="text-[11px] uppercase tracking-[0.32em] text-(--muted)">
+              Knowledge ecosystem
+            </span>
+          </span>
+        </Link>
+
+        <nav className="hidden items-center gap-8 md:flex">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-sm font-medium text-(--muted) transition hover:text-(--text)"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <Link
+            href="/cms"
+            className="hidden rounded-full border border-(--border) bg-(--surface) px-5 py-2.5 text-sm font-semibold text-(--text) transition duration-300 hover:scale-[1.03] hover:border-(--border-strong) sm:inline-flex"
+          >
+            CMS
+          </Link>
+          <Link
+            href="/library"
+            className="inline-flex items-center justify-center rounded-full bg-(--text) px-5 py-2.5 text-sm font-semibold text-white transition duration-300 hover:scale-[1.03]"
+          >
+            Explore the library
+          </Link>
+        </div>
+      </div>
+    </header>
+  );
+}
