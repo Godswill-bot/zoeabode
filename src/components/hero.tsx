@@ -27,7 +27,7 @@ export function Hero({ featuredBook, stats }: HeroProps) {
             <span className="h-2 w-2 rounded-full bg-(--text)" />
             {cms.heroLabel}
           </div>
-          <h1 className="mt-6 max-w-155 font-display text-5xl font-medium leading-[0.98] tracking-[-0.06em] text-(--text) sm:text-6xl lg:text-[4.9rem]">
+          <h1 className="mt-6 max-w-155 font-display text-5xl font-bold leading-[0.98] tracking-[-0.06em] text-(--text) sm:text-6xl lg:text-[4.9rem]">
             {cms.heroHeadline}
           </h1>
           <p className="mt-6 max-w-140 text-lg leading-8 text-(--muted) sm:text-xl">
@@ -87,7 +87,7 @@ export function Hero({ featuredBook, stats }: HeroProps) {
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-(--muted)">
                 Editorial focus
               </p>
-              <p className="mt-3 text-2xl font-display text-(--text)">Outcome first</p>
+              <p className="mt-3 text-2xl font-display font-bold text-(--text)">Outcome first</p>
               <p className="mt-2 text-sm leading-6 text-(--muted)">
                 Every shelf is designed around what the reader wants to do next.
               </p>
@@ -96,7 +96,7 @@ export function Hero({ featuredBook, stats }: HeroProps) {
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-(--muted)">
                 Knowledge capture
               </p>
-              <p className="mt-3 text-2xl font-display text-(--text)">Bookmarks</p>
+              <p className="mt-3 text-2xl font-display font-bold text-(--text)">Bookmarks</p>
               <p className="mt-2 text-sm leading-6 text-(--muted)">
                 Save titles, revisit them, and build a reading stack over time.
               </p>
@@ -105,7 +105,7 @@ export function Hero({ featuredBook, stats }: HeroProps) {
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-(--muted)">
                 High trust
               </p>
-              <p className="mt-3 text-2xl font-display text-(--text)">Premium flow</p>
+              <p className="mt-3 text-2xl font-display font-bold text-(--text)">Premium flow</p>
               <p className="mt-2 text-sm leading-6 text-(--muted)">
                 Strong hierarchy, clear CTAs, and just enough whitespace to breathe.
               </p>
@@ -129,7 +129,7 @@ export function Hero({ featuredBook, stats }: HeroProps) {
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--muted)">
                     Featured shelf
                   </p>
-                  <h2 className="mt-3 font-display text-3xl font-semibold leading-tight text-(--text)">
+                  <h2 className="mt-3 font-display text-3xl font-bold leading-tight text-(--text)">
                     {featuredBook.title}
                   </h2>
                   <p className="mt-2 text-sm text-(--muted)">By {featuredBook.author}</p>

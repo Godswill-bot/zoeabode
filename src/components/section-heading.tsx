@@ -19,7 +19,7 @@ export function SectionHeading({
         {eyebrow}
       </p>
       <div className="space-y-3">
-        <h2 className="font-display text-4xl font-semibold leading-[1.02] tracking-[-0.055em] text-(--text) sm:text-5xl lg:text-6xl">
+        <h2 className="font-display text-4xl font-bold leading-[1.02] tracking-[-0.055em] text-(--text) sm:text-5xl lg:text-6xl">
           {title}
         </h2>
         <p className="max-w-2xl text-base leading-7 tracking-[-0.02em] text-(--muted) sm:text-lg">

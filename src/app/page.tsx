@@ -53,8 +53,8 @@ export default function Home() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-3">
-              {previewBooks.map((book) => (
-                <article key={book.id} className="rounded-4xl border border-(--border) bg-(--surface) p-5 shadow-[0_24px_80px_rgba(15,23,42,0.08)]">
+              {previewBooks.map((book, index) => (
+                <article key={book.id} className="rounded-4xl border border-(--border) bg-(--surface) p-5 shadow-[0_24px_80px_rgba(15,23,42,0.08)]" data-reveal data-reveal-delay={String((index % 3) + 1)}>
                   <div className="h-2 rounded-full bg-linear-to-r from-[#f2b36f] via-[#ef8d5f] to-[#cf5e4f]" />
                   <p className="mt-4 text-xs font-semibold uppercase tracking-[0.24em] text-(--muted)">{book.category}</p>
                   <h3 className="mt-3 font-display text-2xl leading-tight text-(--text)">{book.title}</h3>
@@ -83,27 +83,27 @@ export default function Home() {
               const portrait = [peepsPortrait, peoplePortrait, girlPortrait][index % 3];
 
               return (
-              <article key={testimonial.name} className="rounded-4xl border border-(--border) bg-(--surface) p-6 shadow-[0_24px_80px_rgba(15,23,42,0.08)]">
-                <div className="flex items-start gap-4">
-                  <div className="h-16 w-16 shrink-0 overflow-hidden rounded-3xl border border-(--border) bg-white">
-                    <Image src={portrait} alt={testimonial.name} className="h-full w-full object-cover" />
+                <article key={testimonial.name} className="rounded-4xl border border-(--border) bg-(--surface) p-6 shadow-[0_24px_80px_rgba(15,23,42,0.08)]" data-reveal data-reveal-delay={String((index % 3) + 1)}>
+                  <div className="flex items-start gap-4">
+                    <div className="h-16 w-16 shrink-0 overflow-hidden rounded-3xl border border-(--border) bg-white">
+                      <Image src={portrait} alt={testimonial.name} className="h-full w-full object-cover" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--muted)">Reader feedback</p>
+                      <p className="mt-2 font-semibold text-(--text)">{testimonial.name}</p>
+                      <p className="text-sm text-(--muted)">{testimonial.role}</p>
+                    </div>
+                    <div className="flex items-center gap-1 text-amber-500" aria-label={`${testimonial.rating} out of 5 stars`}>
+                      {Array.from({ length: 5 }).map((_, starIndex) => (
+                        <span key={starIndex} className={starIndex < Math.round(testimonial.rating) ? "text-amber-500" : "text-amber-200"}>
+                          ★
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--muted)">Reader feedback</p>
-                    <p className="mt-2 font-semibold text-(--text)">{testimonial.name}</p>
-                    <p className="text-sm text-(--muted)">{testimonial.role}</p>
-                  </div>
-                  <div className="flex items-center gap-1 text-amber-500" aria-label={`${testimonial.rating} out of 5 stars`}>
-                    {Array.from({ length: 5 }).map((_, starIndex) => (
-                      <span key={starIndex} className={starIndex < Math.round(testimonial.rating) ? "text-amber-500" : "text-amber-200"}>
-                        ★
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <p className="mt-4 text-sm leading-7 text-(--muted)">{testimonial.quote}</p>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">{testimonial.rating.toFixed(1)} / 5 rating</p>
-              </article>
+                  <p className="mt-4 text-sm leading-7 text-(--muted)">{testimonial.quote}</p>
+                  <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">{testimonial.rating.toFixed(1)} / 5 rating</p>
+                </article>
               );
             })}
           </div>
