@@ -15,6 +15,8 @@ export type SessionUser = {
   theme: "light" | "dark";
   joinedAt: string;
   verified: boolean;
+  role: "user" | "admin";
+  accessToken: string;
 };
 
 const subscribers = new Set<() => void>();
@@ -22,7 +24,7 @@ let cachedAuthSession: Session | null = null;
 let authInitialized = false;
 let authListenerReady = false;
 
-function authUserToSessionUser(user: User): SessionUser {
+function authUserToSessionUser(user: User, accessToken: string): SessionUser {
   const profile = getProfileById(user.id) ?? ensureProfileFromAuthUser(user);
   return {
     id: user.id,
@@ -34,11 +36,36 @@ function authUserToSessionUser(user: User): SessionUser {
     theme: profile.theme,
     joinedAt: profile.joinedAt,
     verified: Boolean(user.email_confirmed_at),
+    role: (user.app_metadata?.role as "user" | "admin" | undefined) ?? "user",
+    accessToken,
   };
 }
 
 function notifySubscribers() {
   subscribers.forEach((callback) => callback());
+}
+
+async function syncUserRegistration(payload: {
+  userId: string;
+  email: string;
+  name: string;
+  username: string;
+  avatarUrl?: string;
+  bio?: string;
+  theme?: "light" | "dark";
+  role?: "user" | "admin";
+}) {
+  try {
+    await fetch("/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch {
+    // Registration sync is best-effort; auth still works even if the route is unavailable.
+  }
 }
 
 async function initializeAuth() {
@@ -53,6 +80,16 @@ async function initializeAuth() {
   cachedAuthSession = data.session;
   if (cachedAuthSession?.user) {
     ensureProfileFromAuthUser(cachedAuthSession.user);
+    void syncUserRegistration({
+      userId: cachedAuthSession.user.id,
+      email: cachedAuthSession.user.email ?? "",
+      name: String(cachedAuthSession.user.user_metadata?.name ?? cachedAuthSession.user.email ?? "Reader"),
+      username: String(cachedAuthSession.user.user_metadata?.username ?? cachedAuthSession.user.email ?? "reader"),
+      avatarUrl: String(cachedAuthSession.user.user_metadata?.avatarUrl ?? ""),
+      bio: String(cachedAuthSession.user.user_metadata?.bio ?? "Curating a better reading stack."),
+      theme: (cachedAuthSession.user.user_metadata?.theme as "light" | "dark" | undefined) ?? "light",
+      role: (cachedAuthSession.user.app_metadata?.role as "user" | "admin" | undefined) ?? "user",
+    });
     upsertProfileFromSession(
       cachedAuthSession.user.id,
       cachedAuthSession.user.email ?? "",
@@ -67,6 +104,16 @@ async function initializeAuth() {
       cachedAuthSession = session;
       if (session?.user) {
         ensureProfileFromAuthUser(session.user);
+        void syncUserRegistration({
+          userId: session.user.id,
+          email: session.user.email ?? "",
+          name: String(session.user.user_metadata?.name ?? session.user.email ?? "Reader"),
+          username: String(session.user.user_metadata?.username ?? session.user.email ?? "reader"),
+          avatarUrl: String(session.user.user_metadata?.avatarUrl ?? ""),
+          bio: String(session.user.user_metadata?.bio ?? "Curating a better reading stack."),
+          theme: (session.user.user_metadata?.theme as "light" | "dark" | undefined) ?? "light",
+          role: (session.user.app_metadata?.role as "user" | "admin" | undefined) ?? "user",
+        });
         upsertProfileFromSession(
           session.user.id,
           session.user.email ?? "",
@@ -84,7 +131,7 @@ function readSession() {
   }
 
   if (cachedAuthSession?.user) {
-    return authUserToSessionUser(cachedAuthSession.user);
+    return authUserToSessionUser(cachedAuthSession.user, cachedAuthSession.access_token);
   }
 
   return null;
@@ -124,15 +171,48 @@ export async function signUp(payload: {
     return { error: new Error("Supabase is not configured.") };
   }
 
-  return client.auth.signUp({
+  const result = await client.auth.signUp({
     email: payload.email,
     password: payload.password,
     options: {
       data: {
         name: payload.name,
         username: payload.username,
+        role: "user",
       },
       emailRedirectTo: `${window.location.origin}/account?verified=1`,
+    },
+  });
+
+  const userId = result.data.user?.id;
+  if (userId) {
+    await fetch("/api/users/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId,
+        email: payload.email,
+        name: payload.name,
+        username: payload.username,
+      }),
+    });
+  }
+
+  return result;
+}
+
+export async function signInWithGoogle() {
+  const client = getSupabaseClient();
+  if (!client) {
+    return { error: new Error("Supabase is not configured.") };
+  }
+
+  return client.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: `${window.location.origin}/account`,
     },
   });
 }

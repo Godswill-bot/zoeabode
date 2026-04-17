@@ -7,6 +7,7 @@ import { books as baseBooks } from "@/data/books";
 import { useBookmarks } from "@/lib/bookmarks";
 import { addUploadedBook, clearUploadedBooks, useUploadedBooks } from "@/lib/admin";
 import { getProfiles, useProfiles } from "@/lib/user-space";
+import { useSession } from "@/lib/session";
 
 const accentOptions: { label: string; value: BookAccent }[] = [
   { label: "Ember", value: "ember" },
@@ -33,10 +34,14 @@ const defaultDraft = {
 };
 
 export function AdminDashboard() {
+  const session = useSession();
   const uploadedBooks = useUploadedBooks();
   const profiles = useProfiles();
   const bookmarkIds = useBookmarks();
   const [draft, setDraft] = useState(defaultDraft);
+  const [adminEmail, setAdminEmail] = useState("");
+  const [adminMessage, setAdminMessage] = useState("");
+  const [adminError, setAdminError] = useState("");
 
   const totalCatalog = baseBooks.length + uploadedBooks.length;
   const totalSaved = bookmarkIds.length;
@@ -54,6 +59,35 @@ export function AdminDashboard() {
 
     addUploadedBook(draft);
     setDraft(defaultDraft);
+  }
+
+  async function handlePromoteAdmin(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setAdminError("");
+    setAdminMessage("");
+
+    if (!session?.id) {
+      setAdminError("Admin session required.");
+      return;
+    }
+
+    const response = await fetch("/api/auth/promote-admin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${session.accessToken}`,
+      },
+      body: JSON.stringify({ email: adminEmail.trim() }),
+    });
+
+    const result = (await response.json()) as { ok?: boolean; error?: string };
+    if (!response.ok) {
+      setAdminError(result.error ?? "Unable to promote admin.");
+      return;
+    }
+
+    setAdminMessage("Admin access updated.");
+    setAdminEmail("");
   }
 
   return (
@@ -194,6 +228,21 @@ export function AdminDashboard() {
           <button type="button" onClick={() => clearUploadedBooks()} className="mt-5 inline-flex items-center justify-center rounded-full border border-(--border) bg-white px-4 py-2 text-sm font-semibold text-(--text) transition duration-300 hover:scale-[1.03]">
             Clear uploaded books
           </button>
+        </div>
+
+        <div className="rounded-4xl border border-(--border) bg-(--surface) p-6 shadow-[0_24px_80px_rgba(15,23,42,0.08)]">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--muted)">Admin creation</p>
+          <p className="mt-3 text-sm leading-6 text-(--muted)">
+            Existing admins can promote another Supabase user to admin access. This keeps admin creation out of the public sign-up flow.
+          </p>
+          <form className="mt-4 space-y-3" onSubmit={handlePromoteAdmin}>
+            <input value={adminEmail} onChange={(event) => setAdminEmail(event.target.value)} type="email" placeholder="user@zoeabode.com" className="w-full rounded-2xl border border-(--border) bg-white px-4 py-3 text-sm outline-none transition focus:border-(--text)" />
+            <button type="submit" className="inline-flex items-center justify-center rounded-full bg-(--text) px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90">
+              Promote to admin
+            </button>
+          </form>
+          {adminMessage ? <p className="mt-3 text-sm font-semibold text-(--text)">{adminMessage}</p> : null}
+          {adminError ? <p className="mt-3 text-sm font-semibold text-red-600">{adminError}</p> : null}
         </div>
       </div>
     </div>

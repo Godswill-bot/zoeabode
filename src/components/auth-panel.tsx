@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, type FormEvent } from "react";
-import { useSession, signIn, signOut, signUp, resetPassword } from "@/lib/session";
+import { useSession, signIn, signOut, signUp, resetPassword, signInWithGoogle } from "@/lib/session";
 
 export function AuthPanel() {
   return <AuthPanelContent initialMode="signin" />;
@@ -94,6 +94,14 @@ export function AuthPanelContent({ initialMode }: AuthPanelContentProps) {
 
       setMessage("Password reset email sent.");
       setMode("signin");
+    });
+  }
+
+  function handleGoogleSignIn() {
+    void signInWithGoogle().then(({ error: authError }) => {
+      if (authError) {
+        setError(authError.message);
+      }
     });
   }
 
@@ -220,6 +228,16 @@ export function AuthPanelContent({ initialMode }: AuthPanelContentProps) {
           >
             {mode === "signin" ? "Sign in" : mode === "signup" ? "Create account" : "Send reset link"}
           </button>
+
+          {mode !== "reset" ? (
+            <button
+              type="button"
+              onClick={handleGoogleSignIn}
+              className="inline-flex w-full items-center justify-center rounded-full border border-(--border) bg-white px-5 py-3 text-sm font-semibold text-(--text) transition hover:border-(--text)"
+            >
+              Continue with Google
+            </button>
+          ) : null}
 
           <div className="space-y-2 rounded-3xl border border-(--border) bg-(--surface-soft) p-4 text-sm">
             {message ? <p className="font-semibold text-(--text)">{message}</p> : null}
