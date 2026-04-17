@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${bodyFont.variable} ${displayFont.variable} scroll-smooth`}>
-      <body className="min-h-screen bg-[color:var(--page)] text-[color:var(--text)] antialiased">
+      <body className="min-h-screen bg-(--page) text-(--text) antialiased">
         <ThemeSync />
         <ScrollReveal />
         {children}

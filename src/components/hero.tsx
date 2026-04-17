@@ -114,7 +114,7 @@ export function Hero({ featuredBook, stats }: HeroProps) {
         </div>
 
         <div className="min-w-0 flex items-center justify-center" data-reveal data-reveal-delay="2">
-          <div className="relative w-full max-w-140 rounded-[36px] border border-(--border) bg-white p-5 shadow-[0_36px_100px_rgba(15,23,42,0.08)] backdrop-blur-xl animate-float-slow">
+          <div className="relative w-full max-w-140 rounded-4xl border border-(--border) bg-white p-5 shadow-[0_36px_100px_rgba(15,23,42,0.08)] backdrop-blur-xl animate-float-slow">
             <div className="absolute -left-5 top-10 hidden rounded-3xl border border-(--border) bg-white px-4 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.08)] lg:block animate-float">
               <p className="text-xs uppercase tracking-[0.28em] text-(--muted)">Now reading</p>
               <p className="mt-2 max-w-35 text-sm font-semibold text-(--text)">The Focus Protocol</p>
@@ -123,7 +123,7 @@ export function Hero({ featuredBook, stats }: HeroProps) {
               <p className="text-xs uppercase tracking-[0.28em] text-(--muted)">Saved</p>
               <p className="mt-2 max-w-35 text-sm font-semibold text-(--text)">Quiet Wealth</p>
             </div>
-            <div className="rounded-[28px] border border-(--border) bg-linear-to-br from-white via-[#fbfbf9] to-[#f2f4f7] p-5 transition duration-300 hover:scale-[1.01]">
+            <div className="rounded-3xl border border-(--border) bg-linear-to-br from-white via-[#fbfbf9] to-[#f2f4f7] p-5 transition duration-300 hover:scale-[1.01]">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--muted)">
@@ -144,13 +144,13 @@ export function Hero({ featuredBook, stats }: HeroProps) {
               </p>
 
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-[22px] border border-(--border) bg-white p-4 transition duration-300 hover:scale-[1.02]">
+                <div className="rounded-3xl border border-(--border) bg-white p-4 transition duration-300 hover:scale-[1.02]">
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-(--muted)">
                     What you unlock
                   </p>
                   <p className="mt-2 text-sm leading-6 text-(--text)">{featuredBook.outcome}</p>
                 </div>
-                <div className="rounded-[22px] border border-(--border) bg-white p-4 transition duration-300 hover:scale-[1.02]">
+                <div className="rounded-3xl border border-(--border) bg-white p-4 transition duration-300 hover:scale-[1.02]">
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-(--muted)">
                     Read time
                   </p>
@@ -172,7 +172,7 @@ export function Hero({ featuredBook, stats }: HeroProps) {
 
             <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
               {stats.map((stat) => (
-                <div key={stat.label} className="rounded-[22px] border border-(--border) bg-white p-4 transition duration-300 hover:scale-[1.03]">
+                <div key={stat.label} className="rounded-3xl border border-(--border) bg-white p-4 transition duration-300 hover:scale-[1.03]">
                   <p className="text-2xl font-display text-(--text)">{stat.value}</p>
                   <p className="mt-1 text-sm font-semibold text-(--text)">{stat.label}</p>
                   <p className="mt-2 text-xs leading-5 text-(--muted)">{stat.detail}</p>

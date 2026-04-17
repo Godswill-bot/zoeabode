@@ -12,15 +12,15 @@ const navItems = [
 
 export function PageHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-[color:var(--border)] bg-white/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-(--border) bg-white/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3">
-          <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[color:var(--border)] bg-white text-sm font-semibold tracking-[0.24em] text-[color:var(--text)] shadow-[0_10px_30px_rgba(15,23,42,0.05)]">
+          <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-(--border) bg-white text-sm font-semibold tracking-[0.24em] text-(--text) shadow-[0_10px_30px_rgba(15,23,42,0.05)]">
             ZA
           </span>
           <span className="flex flex-col leading-none">
-            <span className="font-display text-2xl text-[color:var(--text)]">ZoeAbode</span>
-            <span className="text-[11px] uppercase tracking-[0.32em] text-[color:var(--muted)]">
+            <span className="font-display text-2xl text-(--text)">ZoeAbode</span>
+            <span className="text-[11px] uppercase tracking-[0.32em] text-(--muted)">
               Knowledge ecosystem
             </span>
           </span>
@@ -31,7 +31,7 @@ export function PageHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-[color:var(--muted)] transition hover:text-[color:var(--text)]"
+              className="text-sm font-medium text-(--muted) transition hover:text-(--text)"
             >
               {item.label}
             </Link>

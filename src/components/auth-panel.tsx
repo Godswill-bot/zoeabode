@@ -132,7 +132,7 @@ export function AuthPanelContent({ initialMode }: AuthPanelContentProps) {
         </p>
 
         {session ? (
-          <div className="mt-6 space-y-4 rounded-[28px] border border-(--border) bg-(--surface-soft) p-5">
+          <div className="mt-6 space-y-4 rounded-3xl border border-(--border) bg-(--surface-soft) p-5">
             <div className="flex items-center gap-3">
               <div className="h-12 w-12 overflow-hidden rounded-2xl border border-(--border) bg-white">
                 {session.avatarUrl ? <img src={session.avatarUrl} alt={session.name} className="h-full w-full object-cover" /> : null}

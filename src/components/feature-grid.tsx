@@ -22,7 +22,7 @@ export function FeatureGrid() {
                 {feature.title}
               </h3>
               <p className="mt-4 text-base leading-7 text-(--muted)">{feature.description}</p>
-              <div className="mt-5 rounded-[24px] border border-(--border) bg-(--surface-soft) px-4 py-4">
+              <div className="mt-5 rounded-3xl border border-(--border) bg-(--surface-soft) px-4 py-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-(--muted)">
                   Outcome
                 </p>

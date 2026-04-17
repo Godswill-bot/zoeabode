@@ -17,6 +17,7 @@ export type Testimonial = {
   name: string;
   role: string;
   context: string;
+  rating: number;
 };
 
 export type Step = {
@@ -139,6 +140,7 @@ export const testimonials: Testimonial[] = [
     name: "Amina Taylor",
     role: "Student and research assistant",
     context: "Used the library to build a weekly reading rhythm",
+    rating: 5,
   },
   {
     quote:
@@ -146,6 +148,7 @@ export const testimonials: Testimonial[] = [
     name: "Daniel Brooks",
     role: "Founder and product lead",
     context: "Landed on the focus and wealth shelves first",
+    rating: 5,
   },
   {
     quote:
@@ -153,6 +156,7 @@ export const testimonials: Testimonial[] = [
     name: "Priya Nair",
     role: "Designer and avid reader",
     context: "Saved books for later review sessions",
+    rating: 4.9,
   },
 ];
 

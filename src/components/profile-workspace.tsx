@@ -159,7 +159,7 @@ export function ProfileWorkspace() {
 
           <div className="mt-6 grid gap-4 md:grid-cols-[0.72fr_1.28fr]">
             <div className="space-y-4 rounded-3xl border border-(--border) bg-(--surface-soft) p-4">
-              <div className="h-32 w-32 overflow-hidden rounded-[28px] border border-(--border) bg-white">
+              <div className="h-32 w-32 overflow-hidden rounded-3xl border border-(--border) bg-white">
                 {draftAvatar ? <img src={draftAvatar} alt={draftName || profile.name} className="h-full w-full object-cover" /> : null}
               </div>
               <label className="block text-sm font-semibold text-(--text)">
@@ -243,7 +243,7 @@ export function ProfileWorkspace() {
             const collectionState = profile.collections;
 
             return (
-              <div key={book.id} className="rounded-[28px] border border-(--border) bg-(--surface-soft) p-4">
+              <div key={book.id} className="rounded-3xl border border-(--border) bg-(--surface-soft) p-4">
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.22em] text-(--muted)">{book.category}</p>
@@ -281,7 +281,7 @@ export function ProfileWorkspace() {
             </div>
           </div>
 
-          <form onSubmit={handlePostSubmit} className="mt-5 space-y-3 rounded-[28px] border border-(--border) bg-(--surface-soft) p-4">
+          <form onSubmit={handlePostSubmit} className="mt-5 space-y-3 rounded-3xl border border-(--border) bg-(--surface-soft) p-4">
             <textarea value={postBody} onChange={(event) => setPostBody(event.target.value)} rows={4} placeholder="Share what you are reading, thinking, or recommending." className="w-full rounded-2xl border border-(--border) bg-white px-4 py-3 text-sm outline-none transition focus:border-(--text)" />
             <button type="submit" className="rounded-full bg-(--text) px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90">
               Post update
@@ -291,7 +291,7 @@ export function ProfileWorkspace() {
           <div className="mt-5 space-y-4">
             {communityPosts.map((post) => {
               return (
-                <article key={post.id} className="rounded-[28px] border border-(--border) bg-(--surface-soft) p-4">
+                <article key={post.id} className="rounded-3xl border border-(--border) bg-(--surface-soft) p-4">
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <p className="text-sm font-semibold text-(--text)">{post.authorName}</p>

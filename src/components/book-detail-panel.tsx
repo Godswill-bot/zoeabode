@@ -61,7 +61,7 @@ export function BookDetailPanel({ book, recommendations }: BookDetailPanelProps)
       </div>
 
       <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="rounded-[28px] border border-(--border) bg-(--surface-soft) p-5">
+          <div className="rounded-3xl border border-(--border) bg-(--surface-soft) p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">
             Why it matters
           </p>
@@ -75,7 +75,7 @@ export function BookDetailPanel({ book, recommendations }: BookDetailPanelProps)
           </div>
         </div>
 
-        <div className="rounded-[28px] border border-(--border) bg-(--surface-soft) p-5">
+          <div className="rounded-3xl border border-(--border) bg-(--surface-soft) p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">
             Reading path
           </p>
@@ -93,7 +93,7 @@ export function BookDetailPanel({ book, recommendations }: BookDetailPanelProps)
       </div>
 
       <div className="grid gap-3 sm:grid-cols-3">
-        <div className="rounded-2xl border border-(--border) bg-white px-4 py-4">
+          <div className="rounded-3xl border border-(--border) bg-(--surface-soft) p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">Price</p>
           <p className="mt-2 font-display text-2xl text-(--text)">{book.price}</p>
         </div>
@@ -112,7 +112,7 @@ export function BookDetailPanel({ book, recommendations }: BookDetailPanelProps)
       </div>
 
       {recommendations && recommendations.length > 0 ? (
-        <div className="rounded-[28px] border border-(--border) bg-(--surface-soft) p-5">
+        <div className="rounded-3xl border border-(--border) bg-(--surface-soft) p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">
             Recommended next
           </p>

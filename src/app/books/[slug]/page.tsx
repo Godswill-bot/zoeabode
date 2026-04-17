@@ -46,20 +46,20 @@ export default async function BookPage({
   const recommendations = getRecommendedBooks(books, book, 3);
 
   return (
-    <main className="bg-[color:var(--page)]">
+    <main className="bg-(--page)">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8">
-        <Link href="/" className="font-display text-2xl text-[color:var(--text)]">
+        <Link href="/" className="font-display text-2xl text-(--text)">
           ZoeAbode
         </Link>
         <Link
           href="/library"
-          className="rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] px-4 py-2 text-sm font-semibold text-[color:var(--text)] transition hover:border-[color:var(--text)]"
+          className="rounded-full border border-(--border) bg-(--surface) px-4 py-2 text-sm font-semibold text-(--text) transition hover:border-(--text)"
         >
           Back to library
         </Link>
       </div>
 
-      <section className="border-b border-[color:var(--border-soft)] pb-16 pt-8 sm:pt-12">
+      <section className="border-b border-(--border-soft) pb-16 pt-8 sm:pt-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Book detail"

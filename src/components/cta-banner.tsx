@@ -4,7 +4,7 @@ export function CtaBanner() {
   return (
     <section className="border-b border-(--border-soft) bg-(--page) py-16 sm:py-20" data-reveal>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[36px] border border-(--border) bg-[linear-gradient(135deg,rgba(255,255,255,1),rgba(248,248,248,1))] px-6 py-12 text-(--text) shadow-[0_28px_100px_rgba(15,23,42,0.08)] sm:px-10 lg:px-14 lg:py-16 transition duration-300 hover:scale-[1.01]">
+        <div className="relative overflow-hidden rounded-4xl border border-(--border) bg-[linear-gradient(135deg,rgba(255,255,255,1),rgba(248,248,248,1))] px-6 py-12 text-(--text) shadow-[0_28px_100px_rgba(15,23,42,0.08)] sm:px-10 lg:px-14 lg:py-16 transition duration-300 hover:scale-[1.01]">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(247,247,247,0.95),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.92),transparent_33%)]" />
           <div className="relative grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
             <div className="max-w-3xl">
