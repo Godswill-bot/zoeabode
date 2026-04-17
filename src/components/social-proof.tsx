@@ -53,11 +53,6 @@ export function SocialProof() {
                     <Image src={tile.portrait} alt={testimonial.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" />
                   </div>
                   <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(15,23,42,0.9),rgba(15,23,42,0.12)_55%,rgba(15,23,42,0.25))]" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white shadow-[0_10px_30px_rgba(15,23,42,0.2)] backdrop-blur-md transition duration-300 group-hover:scale-[1.06]">
-                      <span className="ml-1 text-xl">▶</span>
-                    </div>
-                  </div>
                   <div className="absolute inset-x-0 bottom-0 p-6 text-white">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/70">{testimonial.name}</p>
                     <p className="mt-2 text-xl font-display font-bold leading-[1.14] tracking-[-0.04em] sm:text-[1.65rem]">
@@ -77,7 +72,7 @@ export function SocialProof() {
                 data-reveal-delay={String((index % 3) + 1)}
               >
                 <p className="max-w-2xl text-[1.25rem] leading-[1.28] tracking-[-0.035em] text-(--text) sm:text-[1.45rem]">
-                  “{testimonial.quote}”
+                  {testimonial.quote}
                 </p>
                 <div className="mt-10 border-t border-(--border) pt-5">
                   <p className="font-semibold text-(--text)">{testimonial.name}</p>
@@ -94,3 +89,5 @@ export function SocialProof() {
     </section>
   );
 }
+
+

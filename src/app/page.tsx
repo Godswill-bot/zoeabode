@@ -154,66 +154,73 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section id="testimonials" className="border-b border-(--border-soft) bg-(--page) py-12 sm:py-16" data-reveal>
+                  <section id="testimonials" className="border-b border-(--border-soft) bg-(--page) py-16 sm:py-20" data-reveal>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Testimonials"
-            title="Reader feedback that backs the experience."
-            description="Real-looking reader reactions, ratings, and profile photos keep the social proof section clear and easy to scan."
+                        title="Reader stories in a calmer editorial layout."
+                        description="This section stays visually separate from social proof by using one featured portrait card and two supporting quote cards instead of a grid wall."
             align="center"
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4 xl:auto-rows-[210px]">
-            {testimonialTiles.map((tile, index) => {
-              const testimonial = tile.testimonial;
+                      <div className="mt-12 grid gap-6 xl:grid-cols-[1.15fr_0.85fr] xl:items-start">
+                        <article
+                          className="group relative overflow-hidden rounded-4xl border border-(--border) bg-(--surface) shadow-[0_30px_90px_rgba(15,23,42,0.08)]"
+                          data-reveal
+                          data-reveal-delay="1"
+                        >
+                          <div className="relative aspect-[4/5] overflow-hidden bg-(--surface-soft)">
+                            <Image src={peepsPortrait} alt={testimonials[0].name} className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" />
+                            <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(15,23,42,0.84),rgba(15,23,42,0.08)_56%,rgba(15,23,42,0.22))]" />
+                            <div className="absolute left-6 top-6 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-white backdrop-blur-md">
+                              Featured reader
+                            </div>
+                            <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-8">
+                              <p className="max-w-xl text-[1.35rem] leading-[1.18] tracking-[-0.04em] sm:text-[1.95rem]">
+                                {testimonials[0].quote}
+                              </p>
+                              <div className="mt-5 border-t border-white/15 pt-5">
+                                <p className="font-semibold">{testimonials[0].name}</p>
+                                <p className="mt-1 text-sm text-white/80">{testimonials[0].role}</p>
+                                <p className="mt-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/70">
+                                  {testimonials[0].context}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </article>
 
-              if (tile.kind === "portrait") {
-                return (
-                  <article
-                    key={`${testimonial.name}-portrait-${index}`}
-                    className={`group relative overflow-hidden rounded-4xl border border-(--border) bg-(--surface) shadow-[0_24px_80px_rgba(15,23,42,0.08)] ${tile.className}`}
-                    data-reveal
-                    data-reveal-delay={String((index % 3) + 1)}
-                  >
-                    <div className="absolute inset-0">
-                      <Image src={tile.portrait} alt={testimonial.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" />
-                    </div>
-                    <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(15,23,42,0.9),rgba(15,23,42,0.12)_55%,rgba(15,23,42,0.25))]" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white shadow-[0_10px_30px_rgba(15,23,42,0.2)] backdrop-blur-md transition duration-300 group-hover:scale-[1.06]">
-                        <span className="ml-1 text-xl">▶</span>
-                      </div>
-                    </div>
-                    <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/70">{testimonial.name}</p>
-                      <p className="mt-2 text-xl font-display font-bold leading-[1.14] tracking-[-0.04em] sm:text-[1.65rem]">
-                        {testimonial.quote}
-                      </p>
-                      <p className="mt-3 text-sm text-white/80">{testimonial.role}</p>
-                    </div>
-                  </article>
-                );
-              }
+                        <div className="grid gap-4">
+                          {[testimonials[1], testimonials[2]].map((testimonial, index) => {
+                            const portrait = index === 0 ? peoplePortrait : girlPortrait;
 
-              return (
-                <article
-                  key={`${testimonial.name}-quote-${index}`}
-                  className={`flex min-h-80 flex-col justify-between rounded-4xl border border-(--border) bg-(--surface) p-7 shadow-[0_24px_80px_rgba(15,23,42,0.06)] ${tile.className}`}
-                  data-reveal
-                  data-reveal-delay={String((index % 3) + 1)}
-                >
-                  <p className="max-w-2xl text-[1.25rem] leading-[1.28] tracking-[-0.035em] text-(--text) sm:text-[1.45rem]">
-                    “{testimonial.quote}”
-                  </p>
-                  <div className="mt-10 border-t border-(--border) pt-5">
-                    <p className="font-semibold text-(--text)">{testimonial.name}</p>
-                    <p className="mt-1 text-sm text-(--muted)">{testimonial.role}</p>
-                    <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">
-                      {testimonial.context}
-                    </p>
-                  </div>
-                </article>
-              );
-            })}
+                            return (
+                              <article
+                                key={testimonial.name}
+                                className="grid gap-5 rounded-4xl border border-(--border) bg-(--surface) p-6 shadow-[0_24px_80px_rgba(15,23,42,0.06)] sm:grid-cols-[112px_1fr] sm:items-center"
+                                data-reveal
+                                data-reveal-delay={String(index + 2)}
+                              >
+                                <div className="overflow-hidden rounded-3xl border border-(--border) bg-(--surface-soft)">
+                                  <Image src={portrait} alt={testimonial.name} className="h-full w-full object-cover" />
+                                </div>
+                                <div className="space-y-4">
+                                  <p className="text-[1.15rem] leading-[1.35] tracking-[-0.03em] text-(--text) sm:text-[1.35rem]">
+                                    {testimonial.quote}
+                                  </p>
+                                  <div className="flex items-start justify-between gap-4 border-t border-(--border-soft) pt-4">
+                                    <div>
+                                      <p className="font-semibold text-(--text)">{testimonial.name}</p>
+                                      <p className="text-sm text-(--muted)">{testimonial.role}</p>
+                                    </div>
+                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">
+                                      {testimonial.context}
+                                    </p>
+                                  </div>
+                                </div>
+                              </article>
+                            );
+                          })}
+                        </div>
           </div>
         </div>
       </section>
@@ -225,3 +232,5 @@ export default function Home() {
     </main>
   );
 }
+
+
