@@ -83,7 +83,7 @@ export default function Home() {
               const portrait = [peepsPortrait, peoplePortrait, girlPortrait][index % 3];
 
               return (
-                <article key={testimonial.name} className="rounded-4xl border border-(--border) bg-(--surface) p-6 shadow-[0_24px_80px_rgba(15,23,42,0.08)]">
+              <article key={testimonial.name} className="rounded-4xl border border-(--border) bg-(--surface) p-6 shadow-[0_24px_80px_rgba(15,23,42,0.08)]">
                 <div className="flex items-start gap-4">
                   <div className="h-16 w-16 shrink-0 overflow-hidden rounded-3xl border border-(--border) bg-white">
                     <Image src={portrait} alt={testimonial.name} className="h-full w-full object-cover" />
