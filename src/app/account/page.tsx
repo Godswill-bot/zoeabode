@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AuthPanel } from "@/components/auth-panel";
 import { PageHeader } from "@/components/page-header";
+import { ProfileWorkspace } from "@/components/profile-workspace";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteFooter } from "@/components/site-footer";
 
@@ -18,10 +19,13 @@ export default function AccountPage() {
           <SectionHeading
             eyebrow="Account"
             title="Sign in, save your stack, and keep your reading profile in one place."
-            description="This mock auth surface gives ZoeAbode a production-style account flow without needing a live backend yet."
+            description="Manage your verified account, edit your identity, switch themes, and handle books, posts, and chat from one hub."
           />
           <div className="mt-12">
             <AuthPanel />
+          </div>
+          <div className="mt-12">
+            <ProfileWorkspace />
           </div>
         </div>
       </section>

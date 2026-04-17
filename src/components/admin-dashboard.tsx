@@ -6,7 +6,7 @@ import type { BookAccent } from "@/data/books";
 import { books as baseBooks } from "@/data/books";
 import { useBookmarks } from "@/lib/bookmarks";
 import { addUploadedBook, clearUploadedBooks, useUploadedBooks } from "@/lib/admin";
-import { getRegisteredUsers, useRegisteredUsers } from "@/lib/session";
+import { getProfiles, useProfiles } from "@/lib/user-space";
 
 const accentOptions: { label: string; value: BookAccent }[] = [
   { label: "Ember", value: "ember" },
@@ -34,13 +34,13 @@ const defaultDraft = {
 
 export function AdminDashboard() {
   const uploadedBooks = useUploadedBooks();
-  const registeredUsers = useRegisteredUsers();
+  const profiles = useProfiles();
   const bookmarkIds = useBookmarks();
   const [draft, setDraft] = useState(defaultDraft);
 
   const totalCatalog = baseBooks.length + uploadedBooks.length;
   const totalSaved = bookmarkIds.length;
-  const latestUsers = getRegisteredUsers().slice(0, 5);
+  const latestUsers = getProfiles().slice(0, 5);
 
   function updateField<K extends keyof typeof defaultDraft>(field: K, value: (typeof defaultDraft)[K]) {
     setDraft((current) => ({ ...current, [field]: value }));
@@ -81,7 +81,7 @@ export function AdminDashboard() {
           </div>
           <div className="rounded-3xl border border-(--border) bg-(--surface-soft) p-4">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-(--muted)">Signed up users</p>
-            <p className="mt-2 font-display text-3xl text-(--text)">{registeredUsers.length}</p>
+            <p className="mt-2 font-display text-3xl text-(--text)">{profiles.length}</p>
           </div>
           <div className="rounded-3xl border border-(--border) bg-(--surface-soft) p-4">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-(--muted)">Saved books</p>

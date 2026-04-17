@@ -1,144 +1,183 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import type { Session, User } from "@supabase/supabase-js";
+import { getSupabaseClient } from "@/lib/supabase";
+import { ensureProfileFromAuthUser, getProfileById, getProfiles, upsertProfileFromSession, useProfiles } from "@/lib/user-space";
 
 export type SessionUser = {
+  id: string;
   name: string;
   email: string;
+  username: string;
+  avatarUrl: string;
+  bio: string;
+  theme: "light" | "dark";
   joinedAt: string;
+  verified: boolean;
 };
 
-const STORAGE_KEY = "zoeabode-session";
-const USERS_STORAGE_KEY = "zoeabode-users";
 const subscribers = new Set<() => void>();
-const userSubscribers = new Set<() => void>();
-const EMPTY_SESSION = null;
-const EMPTY_USERS: SessionUser[] = [];
-let cachedRawSession = "";
-let cachedSession: SessionUser | null = EMPTY_SESSION;
-let cachedRawUsers = "";
-let cachedUsers: SessionUser[] = EMPTY_USERS;
+let cachedAuthSession: Session | null = null;
+let authInitialized = false;
+let authListenerReady = false;
 
-function readSession() {
-  if (typeof window === "undefined") {
-    return EMPTY_SESSION;
+function authUserToSessionUser(user: User): SessionUser {
+  const profile = getProfileById(user.id) ?? ensureProfileFromAuthUser(user);
+  return {
+    id: user.id,
+    name: profile.name,
+    email: user.email ?? profile.email,
+    username: profile.username,
+    avatarUrl: profile.avatarUrl,
+    bio: profile.bio,
+    theme: profile.theme,
+    joinedAt: profile.joinedAt,
+    verified: Boolean(user.email_confirmed_at),
+  };
+}
+
+function notifySubscribers() {
+  subscribers.forEach((callback) => callback());
+}
+
+async function initializeAuth() {
+  const client = getSupabaseClient();
+  if (!client || authInitialized) {
+    return;
   }
 
-  const stored = window.localStorage.getItem(STORAGE_KEY);
-  if (!stored) {
-    cachedRawSession = "";
-    cachedSession = EMPTY_SESSION;
-    return EMPTY_SESSION;
-  }
+  authInitialized = true;
 
-  if (stored === cachedRawSession) {
-    return cachedSession;
+  const { data } = await client.auth.getSession();
+  cachedAuthSession = data.session;
+  if (cachedAuthSession?.user) {
+    ensureProfileFromAuthUser(cachedAuthSession.user);
+    upsertProfileFromSession(
+      cachedAuthSession.user.id,
+      cachedAuthSession.user.email ?? "",
+      String(cachedAuthSession.user.user_metadata?.name ?? cachedAuthSession.user.email ?? "Reader"),
+    );
   }
+  notifySubscribers();
 
-  try {
-    cachedRawSession = stored;
-    cachedSession = JSON.parse(stored) as SessionUser;
-    return cachedSession;
-  } catch {
-    cachedRawSession = "";
-    cachedSession = EMPTY_SESSION;
-    return EMPTY_SESSION;
+  if (!authListenerReady) {
+    authListenerReady = true;
+    client.auth.onAuthStateChange((_event, session) => {
+      cachedAuthSession = session;
+      if (session?.user) {
+        ensureProfileFromAuthUser(session.user);
+        upsertProfileFromSession(
+          session.user.id,
+          session.user.email ?? "",
+          String(session.user.user_metadata?.name ?? session.user.email ?? "Reader"),
+        );
+      }
+      notifySubscribers();
+    });
   }
 }
 
-function writeSession(session: SessionUser | null) {
-  if (session) {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
-    const existingUsers = readUsers();
-    const nextUsers = existingUsers.some((user) => user.email.toLowerCase() === session.email.toLowerCase())
-      ? existingUsers.map((user) => (user.email.toLowerCase() === session.email.toLowerCase() ? session : user))
-      : [session, ...existingUsers];
-    window.localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(nextUsers));
-    cachedRawUsers = JSON.stringify(nextUsers);
-    cachedUsers = nextUsers;
-    userSubscribers.forEach((callback) => callback());
-  } else {
-    window.localStorage.removeItem(STORAGE_KEY);
+function readSession() {
+  if (typeof window === "undefined") {
+    return null;
   }
 
-  subscribers.forEach((callback) => callback());
+  if (cachedAuthSession?.user) {
+    return authUserToSessionUser(cachedAuthSession.user);
+  }
+
+  return null;
 }
 
 function subscribe(callback: () => void) {
   subscribers.add(callback);
 
-  const onStorage = (event: StorageEvent) => {
-    if (event.key === STORAGE_KEY) {
-      callback();
-    }
-  };
-
-  window.addEventListener("storage", onStorage);
+  void initializeAuth();
 
   return () => {
     subscribers.delete(callback);
-    window.removeEventListener("storage", onStorage);
-  };
-}
-
-function readUsers() {
-  if (typeof window === "undefined") {
-    return EMPTY_USERS;
-  }
-
-  const stored = window.localStorage.getItem(USERS_STORAGE_KEY);
-  if (!stored) {
-    cachedRawUsers = "";
-    cachedUsers = EMPTY_USERS;
-    return EMPTY_USERS;
-  }
-
-  if (stored === cachedRawUsers) {
-    return cachedUsers;
-  }
-
-  try {
-    cachedRawUsers = stored;
-    cachedUsers = JSON.parse(stored) as SessionUser[];
-    return cachedUsers;
-  } catch {
-    cachedRawUsers = "";
-    cachedUsers = EMPTY_USERS;
-    return EMPTY_USERS;
-  }
-}
-
-function subscribeUsers(callback: () => void) {
-  userSubscribers.add(callback);
-
-  const onStorage = (event: StorageEvent) => {
-    if (event.key === USERS_STORAGE_KEY) {
-      callback();
-    }
-  };
-
-  window.addEventListener("storage", onStorage);
-
-  return () => {
-    userSubscribers.delete(callback);
-    window.removeEventListener("storage", onStorage);
   };
 }
 
 export function useSession() {
-  return useSyncExternalStore(subscribe, readSession, () => EMPTY_SESSION);
+  return useSyncExternalStore(subscribe, readSession, () => null);
 }
 
-export function signIn(name: string, email: string) {
-  writeSession({
-    name,
-    email,
-    joinedAt: new Date().toISOString(),
+export async function signIn(email: string, password: string) {
+  const client = getSupabaseClient();
+  if (!client) {
+    return { error: new Error("Supabase is not configured.") };
+  }
+
+  return client.auth.signInWithPassword({ email, password });
+}
+
+export async function signUp(payload: {
+  name: string;
+  username: string;
+  email: string;
+  password: string;
+}) {
+  const client = getSupabaseClient();
+  if (!client) {
+    return { error: new Error("Supabase is not configured.") };
+  }
+
+  return client.auth.signUp({
+    email: payload.email,
+    password: payload.password,
+    options: {
+      data: {
+        name: payload.name,
+        username: payload.username,
+      },
+      emailRedirectTo: `${window.location.origin}/account?verified=1`,
+    },
   });
 }
 
-export function signOut() {
-  writeSession(null);
+export async function resetPassword(email: string) {
+  const client = getSupabaseClient();
+  if (!client) {
+    return { error: new Error("Supabase is not configured.") };
+  }
+
+  return client.auth.resetPasswordForEmail(email, {
+    redirectTo: `${window.location.origin}/account?reset=1`,
+  });
+}
+
+export async function signOut() {
+  const client = getSupabaseClient();
+  if (!client) {
+    return { error: new Error("Supabase is not configured.") };
+  }
+
+  return client.auth.signOut();
+}
+
+export async function updateSupabaseProfile(_profileId: string, data: {
+  name?: string;
+  username?: string;
+  avatarUrl?: string;
+  bio?: string;
+  theme?: "light" | "dark";
+}) {
+  const client = getSupabaseClient();
+  if (!client) {
+    return { error: new Error("Supabase is not configured.") };
+  }
+
+  return client.auth.updateUser({
+    data: {
+      name: data.name,
+      username: data.username,
+      avatarUrl: data.avatarUrl,
+      bio: data.bio,
+      theme: data.theme,
+    },
+  });
 }
 
 export function getStoredSession() {
@@ -146,9 +185,17 @@ export function getStoredSession() {
 }
 
 export function useRegisteredUsers() {
-  return useSyncExternalStore(subscribeUsers, readUsers, () => EMPTY_USERS);
+  return useProfiles();
 }
 
 export function getRegisteredUsers() {
-  return readUsers();
+  return getProfiles().map((profile) => ({
+    id: profile.id,
+    name: profile.name,
+    email: profile.email,
+    joinedAt: profile.joinedAt,
+    username: profile.username,
+    avatarUrl: profile.avatarUrl,
+  }));
 }
+

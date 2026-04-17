@@ -14,6 +14,20 @@
 	--accent: #d3ff00;
 }
 
+[data-theme="dark"] {
+	--page: #0c0f14;
+	--surface: #11151b;
+	--surface-soft: #181d26;
+	--surface-strong: #202634;
+	--text: #f4f5f7;
+	--muted: #a7afbd;
+	--muted-soft: #3f4755;
+	--border: #2b3240;
+	--border-strong: #43506a;
+	--border-soft: #212836;
+	--accent: #d3ff00;
+}
+
 html {
 	scroll-behavior: smooth;
 	background: var(--page);
@@ -27,6 +41,14 @@ body {
 	font-weight: 350;
 	line-height: 1.5;
 	background: var(--page);
+}
+
+body[data-theme="dark"] {
+	color-scheme: dark;
+}
+
+body[data-theme="light"] {
+	color-scheme: light;
 }
 
 body.reveal-ready [data-reveal] {

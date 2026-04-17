@@ -4,8 +4,8 @@ import { AuthButton } from "@/components/auth-button";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Library", href: "/library" },
+  { label: "Profiles", href: "/profiles" },
   { label: "Guides", href: "/guides" },
-  { label: "Admin", href: "/admin" },
   { label: "Account", href: "/account" },
   { label: "CMS", href: "/cms" },
 ];

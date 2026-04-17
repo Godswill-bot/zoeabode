@@ -60,7 +60,7 @@ export function BookCard({
     <article
       data-reveal
       data-reveal-delay={revealDelay}
-      className={`group self-start overflow-hidden rounded-[32px] border p-5 md:p-6 transition duration-300 hover:scale-[1.03] ${frame}`}
+      className={`group self-start overflow-hidden rounded-4xl border p-5 md:p-6 transition duration-300 hover:scale-[1.03] ${frame}`}
     >
       <div className={`h-2 rounded-full bg-linear-to-r transition duration-300 group-hover:scale-x-[1.01] ${accentMap[book.accent]}`} />
       <div className="mt-4 flex items-start justify-between gap-4">

@@ -36,7 +36,7 @@ export function Hero({ featuredBook, stats }: HeroProps) {
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
-              href="/library"
+              href="/signup"
               className="inline-flex items-center justify-center rounded-full bg-(--text) px-6 py-3.5 text-sm font-semibold text-white transition duration-300 hover:scale-[1.03]"
             >
               {cms.primaryCta}

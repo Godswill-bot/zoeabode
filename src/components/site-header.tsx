@@ -3,8 +3,8 @@ import Link from "next/link";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Library", href: "/library" },
+  { label: "Profiles", href: "/profiles" },
   { label: "Guides", href: "/guides" },
-  { label: "Admin", href: "/admin" },
   { label: "Account", href: "/account" },
 ];
 
@@ -44,10 +44,10 @@ export function SiteHeader() {
             CMS
           </Link>
           <Link
-            href="/library"
+            href="/signup"
             className="inline-flex items-center justify-center rounded-full bg-(--text) px-5 py-2.5 text-sm font-semibold text-white transition duration-300 hover:scale-[1.03]"
           >
-            Explore the library
+            Sign up to start
           </Link>
         </div>
       </div>

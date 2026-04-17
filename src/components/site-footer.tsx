@@ -4,7 +4,7 @@ const footerLinks = [
   { label: "Home", href: "/" },
   { label: "Library", href: "/library" },
   { label: "Guides", href: "/guides" },
-  { label: "Admin", href: "/admin" },
+  { label: "Sign Up", href: "/signup" },
 ];
 
 export function SiteFooter() {

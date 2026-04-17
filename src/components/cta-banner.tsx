@@ -22,10 +22,10 @@ export function CtaBanner() {
 
             <div className="flex flex-wrap gap-3">
               <Link
-                href="/library"
+                href="/signup"
                 className="inline-flex items-center justify-center rounded-full bg-(--text) px-6 py-3.5 text-sm font-semibold text-white transition duration-300 hover:scale-[1.03]"
               >
-                Explore the library
+                Sign up to start
               </Link>
               <Link
                 href="/guides"

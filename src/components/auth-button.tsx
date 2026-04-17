@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useSession, signOut } from "@/lib/session";
+import { signOut, useSession } from "@/lib/session";
 
 export function AuthButton() {
   const session = useSession();
@@ -9,10 +9,10 @@ export function AuthButton() {
   if (!session) {
     return (
       <Link
-        href="/account"
+        href="/signup"
         className="inline-flex items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] px-4 py-2 text-sm font-semibold text-[color:var(--text)] transition duration-300 hover:scale-[1.03] hover:border-[color:var(--border-strong)]"
       >
-        Sign in
+        Sign up
       </Link>
     );
   }
@@ -23,14 +23,18 @@ export function AuthButton() {
         href="/account"
         className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] px-4 py-2 text-sm font-semibold text-[color:var(--text)] transition duration-300 hover:scale-[1.03] hover:border-[color:var(--border-strong)]"
       >
-        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[color:var(--text)] text-xs font-bold text-white">
-          {session.name.slice(0, 1).toUpperCase()}
+        <span className="flex h-7 w-7 items-center justify-center overflow-hidden rounded-full bg-[color:var(--text)] text-xs font-bold text-white">
+          {session.avatarUrl ? (
+            <img src={session.avatarUrl} alt={session.name} className="h-full w-full object-cover" />
+          ) : (
+            session.name.slice(0, 1).toUpperCase()
+          )}
         </span>
-        {session.name}
+        <span className="max-w-32 truncate">{session.username}</span>
       </Link>
       <button
         type="button"
-        onClick={() => signOut()}
+        onClick={() => void signOut()}
         className="inline-flex items-center justify-center rounded-full border border-[color:var(--border)] bg-transparent px-4 py-2 text-sm font-semibold text-[color:var(--text)] transition duration-300 hover:scale-[1.03] hover:border-[color:var(--border-strong)]"
       >
         Sign out

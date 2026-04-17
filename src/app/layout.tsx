@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { ThemeSync } from "@/components/theme-sync";
 import "./globals.css";
 
 const bodyFont = Inter({
@@ -36,6 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bodyFont.variable} ${displayFont.variable} scroll-smooth`}>
       <body className="min-h-screen bg-[color:var(--page)] text-[color:var(--text)] antialiased">
+        <ThemeSync />
         <ScrollReveal />
         {children}
       </body>
