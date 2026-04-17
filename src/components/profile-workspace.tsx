@@ -218,7 +218,7 @@ export function ProfileWorkspace() {
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-(--muted)">Quick theme switch</p>
             <div className="flex flex-wrap gap-2">
               {(["light", "dark"] as const).map((theme) => (
-                <button key={theme} type="button" onClick={() => setDraftTheme(theme)} className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${draftTheme === theme ? "border-(--text) bg-(--text) text-white" : "border-(--border) bg-white text-(--text)"}`}>
+                <button key={theme} type="button" onClick={() => setDraftTheme(theme)} className={`tab-chip rounded-full border px-4 py-2 text-sm font-semibold ${draftTheme === theme ? "border-(--text) bg-(--text) text-white" : "border-(--border) bg-white text-(--text)"}`}>
                   {theme === "light" ? "Light mode" : "Dark mode"}
                 </button>
               ))}

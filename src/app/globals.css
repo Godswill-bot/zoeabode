@@ -92,6 +92,25 @@ body.reveal-ready [data-reveal-delay="3"] {
 	letter-spacing: -0.04em;
 }
 
+.tab-chip {
+	transition:
+		transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1),
+		border-color 260ms cubic-bezier(0.22, 1, 0.36, 1),
+		background-color 260ms cubic-bezier(0.22, 1, 0.36, 1),
+		color 260ms cubic-bezier(0.22, 1, 0.36, 1);
+	will-change: transform, box-shadow;
+	transform: translateZ(0);
+}
+.tab-chip:hover {
+	transform: translate3d(0, -2px, 0) scale(1.02);
+	box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+}
+.tab-chip:focus-visible {
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(211, 255, 0, 0.35), 0 14px 30px rgba(15, 23, 42, 0.12);
+}
+
 @keyframes float {
 	0%,
 	100% {
@@ -160,6 +179,7 @@ body.reveal-ready [data-reveal-delay="3"] {
 	.animate-float-slow,
 	.animate-marquee,
 	.animate-pulse-soft,
+	.tab-chip,
 	body.reveal-ready [data-reveal] {
 		animation: none;
 		opacity: 1;

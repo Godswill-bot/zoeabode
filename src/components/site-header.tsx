@@ -25,12 +25,12 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-3 md:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-(--muted) transition hover:text-(--text)"
+              className="tab-chip inline-flex items-center rounded-full px-3 py-2 text-sm font-medium text-(--muted) hover:bg-(--surface) hover:text-(--text)"
             >
               {item.label}
             </Link>

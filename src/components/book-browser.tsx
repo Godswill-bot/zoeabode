@@ -55,7 +55,7 @@ export function BookBrowser({ books, initialBookSlug }: BookBrowserProps) {
             <Link
               key={filter}
               href={filterHref(filter)}
-              className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
+              className={`tab-chip rounded-full border px-4 py-2 text-sm font-semibold ${
                 activeFilter === filter
                   ? "border-(--text) bg-(--text) text-white"
                   : "border-(--border) bg-(--surface) text-(--muted) hover:border-(--text) hover:text-(--text)"

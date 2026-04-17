@@ -114,7 +114,7 @@ export function AuthPanelContent({ initialMode }: AuthPanelContentProps) {
               key={item}
               type="button"
               onClick={() => setMode(item)}
-              className={`rounded-full border px-4 py-2 text-sm font-semibold transition duration-300 ${
+              className={`tab-chip rounded-full border px-4 py-2 text-sm font-semibold ${
                 mode === item
                   ? "border-(--text) bg-(--text) text-white"
                   : "border-(--border) bg-white text-(--text) hover:border-(--border-strong)"
