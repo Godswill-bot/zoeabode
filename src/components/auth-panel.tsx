@@ -226,7 +226,8 @@ export function AuthPanelContent({ initialMode }: AuthPanelContentProps) {
             type="submit"
             className="inline-flex w-full items-center justify-center rounded-full bg-(--text) px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
           >
-            {mode === "signin" ? "Sign in" : mode === "signup" ? "Create account" : "Send reset link"}
+            {mode === 'signup' && <svg aria-hidden="true" viewBox="0 0 24 24" className="mr-2 h-4 w-4 shrink-0" focusable="false"><path fill="#4285F4" d="M21.35 10.1H12v3.9h5.35c-.23 1.24-.93 2.29-1.99 3l3.22 2.5c1.88-1.73 2.97-4.27 2.97-7.28 0-.72-.06-1.28-.2-2.12Z" /><path fill="#34A853" d="M12 22c2.7 0 4.96-.89 6.61-2.4l-3.22-2.5c-.89.6-2.03.96-3.39.96-2.61 0-4.82-1.76-5.61-4.13H2.06v2.59A10 10 0 0 0 12 22Z" /><path fill="#FBBC05" d="M6.39 13.93A5.99 5.99 0 0 1 6.07 12c0-.67.11-1.32.32-1.93V7.48H2.06A10 10 0 0 0 2 12c0 1.61.38 3.13 1.06 4.48l3.33-2.55Z" /><path fill="#EA4335" d="M12 5.85c1.48 0 2.8.51 3.85 1.5l2.89-2.89A9.73 9.73 0 0 0 12 2C8.35 2 5.17 4.1 3.39 7.48l3.33 2.58C7.18 7.61 9.39 5.85 12 5.85Z" /></svg>}
+            {mode === 'signin' ? 'Sign in' : mode === 'signup' ? 'Create account' : 'Send reset link'}
           </button>
 
           {mode !== "reset" ? (
@@ -235,6 +236,12 @@ export function AuthPanelContent({ initialMode }: AuthPanelContentProps) {
               onClick={handleGoogleSignIn}
               className="inline-flex w-full items-center justify-center rounded-full border border-(--border) bg-white px-5 py-3 text-sm font-semibold text-(--text) transition hover:border-(--text)"
             >
+              <svg aria-hidden="true" viewBox="0 0 24 24" className="mr-2 h-4 w-4 shrink-0" focusable="false">
+                <path fill="#4285F4" d="M21.35 10.1H12v3.9h5.35c-.23 1.24-.93 2.29-1.99 3l3.22 2.5c1.88-1.73 2.97-4.27 2.97-7.28 0-.72-.06-1.28-.2-2.12Z" />
+                <path fill="#34A853" d="M12 22c2.7 0 4.96-.89 6.61-2.4l-3.22-2.5c-.89.6-2.03.96-3.39.96-2.61 0-4.82-1.76-5.61-4.13H2.06v2.59A10 10 0 0 0 12 22Z" />
+                <path fill="#FBBC05" d="M6.39 13.93A5.99 5.99 0 0 1 6.07 12c0-.67.11-1.32.32-1.93V7.48H2.06A10 10 0 0 0 2 12c0 1.61.38 3.13 1.06 4.48l3.33-2.55Z" />
+                <path fill="#EA4335" d="M12 5.85c1.48 0 2.8.51 3.85 1.5l2.89-2.89A9.73 9.73 0 0 0 12 2C8.35 2 5.17 4.1 3.39 7.48l3.33 2.58C7.18 7.61 9.39 5.85 12 5.85Z" />
+              </svg>
               Continue with Google
             </button>
           ) : null}
@@ -255,3 +262,4 @@ export function AuthPanelContent({ initialMode }: AuthPanelContentProps) {
     </div>
   );
 }
+
