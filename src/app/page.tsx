@@ -11,6 +11,10 @@ import { SocialProof } from "@/components/social-proof";
 import { ValueProp } from "@/components/value-prop";
 import { books, featuredBooks } from "@/data/books";
 import { stats, testimonials } from "@/data/site";
+import Image from "next/image";
+import peepsPortrait from "../../peeps.webp";
+import peoplePortrait from "../../people.webp";
+import girlPortrait from "../../girl.jpg";
 
 export default function Home() {
   const featuredBook = featuredBooks[0] ?? books[0];
@@ -65,20 +69,26 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="border-b border-(--border-soft) bg-(--page) py-12 sm:py-16" data-reveal>
+      <section id="testimonials" className="border-b border-(--border-soft) bg-(--page) py-12 sm:py-16" data-reveal>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-3">
-            {testimonials.map((testimonial) => (
+            {testimonials.map((testimonial, index) => {
+              const portrait = [peepsPortrait, peoplePortrait, girlPortrait][index % 3];
+
+              return (
               <article key={testimonial.name} className="rounded-4xl border border-(--border) bg-(--surface) p-6 shadow-[0_24px_80px_rgba(15,23,42,0.08)]">
-                <div className="flex items-center justify-between gap-4">
-                  <div>
+                <div className="flex items-start gap-4">
+                  <div className="h-16 w-16 shrink-0 overflow-hidden rounded-3xl border border-(--border) bg-white">
+                    <Image src={portrait} alt={testimonial.name} className="h-full w-full object-cover" />
+                  </div>
+                  <div className="min-w-0 flex-1">
                     <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--muted)">Reader feedback</p>
                     <p className="mt-2 font-semibold text-(--text)">{testimonial.name}</p>
                     <p className="text-sm text-(--muted)">{testimonial.role}</p>
                   </div>
                   <div className="flex items-center gap-1 text-amber-500" aria-label={`${testimonial.rating} out of 5 stars`}>
-                    {Array.from({ length: 5 }).map((_, index) => (
-                      <span key={index} className={index < Math.round(testimonial.rating) ? "text-amber-500" : "text-amber-200"}>
+                    {Array.from({ length: 5 }).map((_, starIndex) => (
+                      <span key={starIndex} className={starIndex < Math.round(testimonial.rating) ? "text-amber-500" : "text-amber-200"}>
                         ★
                       </span>
                     ))}
@@ -87,7 +97,8 @@ export default function Home() {
                 <p className="mt-4 text-sm leading-7 text-(--muted)">{testimonial.quote}</p>
                 <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">{testimonial.rating.toFixed(1)} / 5 rating</p>
               </article>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

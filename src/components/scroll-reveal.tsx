@@ -37,7 +37,12 @@ export function ScrollReveal() {
 
     targets.forEach((target) => observer.observe(target));
 
+    const fallbackTimer = window.setTimeout(() => {
+      targets.forEach((target) => target.classList.add("is-visible"));
+    }, 350);
+
     return () => {
+      window.clearTimeout(fallbackTimer);
       observer.disconnect();
     };
   }, [pathname]);
