@@ -7,6 +7,7 @@ import { Hero } from "@/components/hero";
 import { HowItWorks } from "@/components/how-it-works";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SectionHeading } from "@/components/section-heading";
 import { SocialProof } from "@/components/social-proof";
 import { ValueProp } from "@/components/value-prop";
 import { books, featuredBooks } from "@/data/books";
@@ -71,12 +72,18 @@ export default function Home() {
       </section>
       <section id="testimonials" className="border-b border-(--border-soft) bg-(--page) py-12 sm:py-16" data-reveal>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 lg:grid-cols-3">
+          <SectionHeading
+            eyebrow="Testimonials"
+            title="Reader feedback that backs the experience."
+            description="Real-looking reader reactions, ratings, and profile photos keep the social proof section clear and easy to scan."
+            align="center"
+          />
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {testimonials.map((testimonial, index) => {
               const portrait = [peepsPortrait, peoplePortrait, girlPortrait][index % 3];
 
               return (
-              <article key={testimonial.name} className="rounded-4xl border border-(--border) bg-(--surface) p-6 shadow-[0_24px_80px_rgba(15,23,42,0.08)]">
+                <article key={testimonial.name} className="rounded-4xl border border-(--border) bg-(--surface) p-6 shadow-[0_24px_80px_rgba(15,23,42,0.08)]">
                 <div className="flex items-start gap-4">
                   <div className="h-16 w-16 shrink-0 overflow-hidden rounded-3xl border border-(--border) bg-white">
                     <Image src={portrait} alt={testimonial.name} className="h-full w-full object-cover" />
