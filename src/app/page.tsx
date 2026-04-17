@@ -35,8 +35,8 @@ const visualStories = [
     title: "Editorial design that feels wide open.",
     copy: "A cinematic layout for big-picture reading journeys, with calm motion and strong contrast so the page feels alive without becoming loud.",
     caption: "Curated reading flow",
-    layout: "xl:col-span-2 xl:row-span-2",
-    aspect: "aspect-[16/10]",
+    layout: "xl:col-span-2",
+    aspect: "aspect-[16/7]",
   },
   {
     image: parkReader,
@@ -44,7 +44,7 @@ const visualStories = [
     copy: "Placed beside the text, this frame keeps the image large while the copy stays easy to scan and anchored to the action.",
     caption: "Focus and discovery",
     layout: "",
-    aspect: "aspect-[4/5]",
+    aspect: "aspect-[4/3]",
   },
   {
     image: gardenScene,
@@ -52,7 +52,7 @@ const visualStories = [
     copy: "The background motion and rounded surfaces help the whole section feel polished while still staying warm and book-like.",
     caption: "Gentle movement",
     layout: "",
-    aspect: "aspect-[4/5]",
+    aspect: "aspect-[4/3]",
   },
 ];
 
@@ -79,7 +79,7 @@ export default function Home() {
             align="center"
           />
 
-          <div className="mt-10 grid gap-6 xl:grid-cols-3 xl:auto-rows-[minmax(340px,1fr)]">
+          <div className="mt-10 grid gap-6 xl:grid-cols-3 xl:auto-rows-[minmax(280px,auto)]">
             {visualStories.map((story, index) => {
               const isFeature = index === 0;
 
@@ -103,7 +103,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="space-y-3 p-6 lg:p-7">
+                  <div className="space-y-3 p-5 lg:p-6">
                     <h3 className="font-display text-3xl font-bold leading-[1.02] tracking-[-0.05em] text-(--text)">
                       {story.title}
                     </h3>
@@ -170,7 +170,7 @@ export default function Home() {
                 return (
                   <article
                     key={`${testimonial.name}-portrait-${index}`}
-                      className={`group relative overflow-hidden rounded-4xl border border-(--border) bg-(--surface) shadow-[0_24px_80px_rgba(15,23,42,0.08)] ${tile.className}`}
+                    className={`group relative overflow-hidden rounded-4xl border border-(--border) bg-(--surface) shadow-[0_24px_80px_rgba(15,23,42,0.08)] ${tile.className}`}
                     data-reveal
                     data-reveal-delay={String((index % 3) + 1)}
                   >
@@ -197,7 +197,7 @@ export default function Home() {
               return (
                 <article
                   key={`${testimonial.name}-quote-${index}`}
-                  className={`flex min-h-[320px] flex-col justify-between rounded-4xl border border-(--border) bg-(--surface) p-7 shadow-[0_24px_80px_rgba(15,23,42,0.06)] ${tile.className}`}
+                  className={`flex min-h-80 flex-col justify-between rounded-4xl border border-(--border) bg-(--surface) p-7 shadow-[0_24px_80px_rgba(15,23,42,0.06)] ${tile.className}`}
                   data-reveal
                   data-reveal-delay={String((index % 3) + 1)}
                 >
