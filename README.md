@@ -1,6 +1,6 @@
-# ZoeAbode
+# Zoe's BookSphere
 
-ZoeAbode is a premium book and knowledge platform built with Next.js, React, and Tailwind CSS. It is designed as a high-conversion editorial experience for curated reading, self-development, and digital content discovery.
+Zoe's BookSphere is a premium book and knowledge platform built with Next.js, React, and Tailwind CSS. It is designed as a high-conversion editorial experience for curated reading, self-development, and digital content discovery.
 
 ## What is included
 
