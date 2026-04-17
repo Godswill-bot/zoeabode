@@ -8,7 +8,6 @@ const navItems = [
   { label: "Profiles", href: "/profiles" },
   { label: "Guides", href: "/guides" },
   { label: "Account", href: "/account" },
-  { label: "CMS", href: "/cms" },
 ];
 
 export function PageHeader() {
