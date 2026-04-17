@@ -162,7 +162,7 @@ export default function Home() {
             description="Real-looking reader reactions, ratings, and profile photos keep the social proof section clear and easy to scan."
             align="center"
           />
-          <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4 xl:auto-rows-[160px]">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4 xl:auto-rows-[210px]">
             {testimonialTiles.map((tile, index) => {
               const testimonial = tile.testimonial;
 
@@ -170,7 +170,7 @@ export default function Home() {
                 return (
                   <article
                     key={`${testimonial.name}-portrait-${index}`}
-                    className={`group relative overflow-hidden rounded-4xl border border-(--border) bg-(--surface) shadow-[0_24px_80px_rgba(15,23,42,0.08)] ${tile.className}`}
+                      className={`group relative overflow-hidden rounded-4xl border border-(--border) bg-(--surface) shadow-[0_24px_80px_rgba(15,23,42,0.08)] ${tile.className}`}
                     data-reveal
                     data-reveal-delay={String((index % 3) + 1)}
                   >
@@ -185,7 +185,7 @@ export default function Home() {
                     </div>
                     <div className="absolute inset-x-0 bottom-0 p-6 text-white">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/70">{testimonial.name}</p>
-                      <p className="mt-2 text-2xl font-display font-bold leading-[1.08] tracking-[-0.04em]">
+                      <p className="mt-2 text-xl font-display font-bold leading-[1.14] tracking-[-0.04em] sm:text-[1.65rem]">
                         {testimonial.quote}
                       </p>
                       <p className="mt-3 text-sm text-white/80">{testimonial.role}</p>
@@ -197,14 +197,14 @@ export default function Home() {
               return (
                 <article
                   key={`${testimonial.name}-quote-${index}`}
-                  className={`flex flex-col justify-between rounded-4xl border border-(--border) bg-(--surface) p-6 shadow-[0_24px_80px_rgba(15,23,42,0.06)] ${tile.className}`}
+                  className={`flex min-h-[320px] flex-col justify-between rounded-4xl border border-(--border) bg-(--surface) p-7 shadow-[0_24px_80px_rgba(15,23,42,0.06)] ${tile.className}`}
                   data-reveal
                   data-reveal-delay={String((index % 3) + 1)}
                 >
-                  <p className="text-[1.5rem] leading-[1.18] tracking-[-0.04em] text-(--text) sm:text-[1.7rem]">
+                  <p className="max-w-2xl text-[1.25rem] leading-[1.28] tracking-[-0.035em] text-(--text) sm:text-[1.45rem]">
                     “{testimonial.quote}”
                   </p>
-                  <div className="mt-8 border-t border-(--border) pt-5">
+                  <div className="mt-10 border-t border-(--border) pt-5">
                     <p className="font-semibold text-(--text)">{testimonial.name}</p>
                     <p className="mt-1 text-sm text-(--muted)">{testimonial.role}</p>
                     <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">
