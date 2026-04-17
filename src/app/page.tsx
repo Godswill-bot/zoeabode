@@ -13,6 +13,9 @@ import { ValueProp } from "@/components/value-prop";
 import { books, featuredBooks } from "@/data/books";
 import { stats, testimonials } from "@/data/site";
 import Image from "next/image";
+import rLandscape from "../../R.jpg";
+import parkReader from "../../ai-generated-young-woman-reading-a-book-in-the-park-at-sunset-beautiful-nature-background-photo.jpg";
+import gardenScene from "../../woman garden.webp";
 import peepsPortrait from "../../peeps.webp";
 import peoplePortrait from "../../people.webp";
 import girlPortrait from "../../girl.jpg";
@@ -24,6 +27,33 @@ const testimonialTiles = [
   { kind: "quote" as const, testimonial: testimonials[1], className: "lg:col-span-1" },
   { kind: "quote" as const, testimonial: testimonials[2], className: "lg:col-span-1" },
   { kind: "portrait" as const, testimonial: testimonials[2], portrait: girlPortrait, className: "lg:row-span-2" },
+];
+
+const visualStories = [
+  {
+    image: rLandscape,
+    title: "Editorial design that feels wide open.",
+    copy: "A cinematic layout for big-picture reading journeys, with calm motion and strong contrast so the page feels alive without becoming loud.",
+    caption: "Curated reading flow",
+    layout: "xl:col-span-2 xl:row-span-2",
+    aspect: "aspect-[16/10]",
+  },
+  {
+    image: parkReader,
+    title: "Reading in the wild.",
+    copy: "Placed beside the text, this frame keeps the image large while the copy stays easy to scan and anchored to the action.",
+    caption: "Focus and discovery",
+    layout: "",
+    aspect: "aspect-[4/5]",
+  },
+  {
+    image: gardenScene,
+    title: "Soft, premium, and human.",
+    copy: "The background motion and rounded surfaces help the whole section feel polished while still staying warm and book-like.",
+    caption: "Gentle movement",
+    layout: "",
+    aspect: "aspect-[4/5]",
+  },
 ];
 
 export default function Home() {
@@ -40,6 +70,51 @@ export default function Home() {
       <FeatureGrid />
       <SocialProof />
       <HowItWorks />
+      <section id="visual-stories" className="border-b border-(--border-soft) bg-(--page) py-16 sm:py-20" data-reveal>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Visual stories"
+            title="Large animated pictures that keep the home page feeling premium."
+            description="This section uses oversized imagery, soft motion, and short supporting text to make the site feel more editorial and more alive at a glance."
+            align="center"
+          />
+
+          <div className="mt-10 grid gap-6 xl:grid-cols-3 xl:auto-rows-[minmax(340px,1fr)]">
+            {visualStories.map((story, index) => {
+              const isFeature = index === 0;
+
+              return (
+                <article
+                  key={story.title}
+                  className={`group overflow-hidden rounded-4xl border border-(--border) bg-(--surface) shadow-[0_30px_90px_rgba(15,23,42,0.08)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_36px_110px_rgba(15,23,42,0.12)] ${story.layout}`}
+                  data-reveal
+                  data-reveal-delay={String((index % 3) + 1)}
+                >
+                  <div className={`relative ${story.aspect} overflow-hidden bg-(--surface-soft)`}>
+                    <Image
+                      src={story.image}
+                      alt={story.title}
+                      className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                      priority={isFeature}
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(15,23,42,0.34),rgba(15,23,42,0.02)_55%,rgba(15,23,42,0.08))]" />
+                    <div className="absolute right-5 top-5 rounded-full border border-white/35 bg-white/15 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.26em] text-white backdrop-blur-md">
+                      {story.caption}
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 p-6 lg:p-7">
+                    <h3 className="font-display text-3xl font-bold leading-[1.02] tracking-[-0.05em] text-(--text)">
+                      {story.title}
+                    </h3>
+                    <p className="max-w-2xl text-base leading-7 text-(--muted)">{story.copy}</p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
       <section className="border-b border-(--border-soft) bg-(--page) py-16 sm:py-20" data-reveal>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 xl:grid-cols-[0.9fr_1.1fr] xl:items-start">
@@ -95,7 +170,7 @@ export default function Home() {
                 return (
                   <article
                     key={`${testimonial.name}-portrait-${index}`}
-                    className={`group relative overflow-hidden rounded-[2rem] border border-(--border) bg-(--surface) shadow-[0_24px_80px_rgba(15,23,42,0.08)] ${tile.className}`}
+                    className={`group relative overflow-hidden rounded-4xl border border-(--border) bg-(--surface) shadow-[0_24px_80px_rgba(15,23,42,0.08)] ${tile.className}`}
                     data-reveal
                     data-reveal-delay={String((index % 3) + 1)}
                   >
@@ -122,7 +197,7 @@ export default function Home() {
               return (
                 <article
                   key={`${testimonial.name}-quote-${index}`}
-                  className={`flex flex-col justify-between rounded-[2rem] border border-(--border) bg-(--surface) p-6 shadow-[0_24px_80px_rgba(15,23,42,0.06)] ${tile.className}`}
+                  className={`flex flex-col justify-between rounded-4xl border border-(--border) bg-(--surface) p-6 shadow-[0_24px_80px_rgba(15,23,42,0.06)] ${tile.className}`}
                   data-reveal
                   data-reveal-delay={String((index % 3) + 1)}
                 >
