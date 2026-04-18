@@ -15,7 +15,7 @@ export function CtaBanner() {
                 Build your reading stack around outcomes, not noise.
               </h2>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-(--muted)">
-                ZoeAbode gives readers a premium way to discover books, save what matters, and turn
+                Zoe's BookSphere gives readers a premium way to discover books, save what matters, and turn
                 curiosity into a repeatable knowledge habit.
               </p>
             </div>

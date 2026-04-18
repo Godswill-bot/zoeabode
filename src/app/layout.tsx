@@ -17,12 +17,12 @@ const displayFont = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ZoeAbode | Curated books, guides, and knowledge systems",
+  title: "Zoe's BookSphere | Curated books, guides, and knowledge systems",
   description:
     "A premium book and knowledge platform for discovery, self-development, curated reading, and digital content.",
-  metadataBase: new URL("https://zoeabode.com"),
+  metadataBase: new URL("https://zoesbooksphere.com"),
   openGraph: {
-    title: "ZoeAbode",
+    title: "Zoe's BookSphere",
     description:
       "Curated books, guides, and knowledge systems for readers who want more than a bookstore.",
     type: "website",

@@ -3,6 +3,7 @@ type SectionHeadingProps = {
   title: string;
   description: string;
   align?: "left" | "center";
+  delay?: string;
 };
 
 export function SectionHeading({
@@ -10,11 +11,12 @@ export function SectionHeading({
   title,
   description,
   align = "left",
+  delay,
 }: SectionHeadingProps) {
   const alignment = align === "center" ? "items-center text-center" : "items-start text-left";
 
   return (
-    <div className={`mx-auto flex max-w-3xl flex-col gap-4 ${alignment}`}>
+    <div className={`mx-auto flex max-w-3xl flex-col gap-4 ${alignment}`} data-reveal data-reveal-delay={delay}>
       <p className="text-xs font-semibold uppercase tracking-[0.42em] text-(--muted)">
         {eyebrow}
       </p>

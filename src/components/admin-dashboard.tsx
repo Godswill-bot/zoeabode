@@ -20,7 +20,7 @@ const accentOptions: { label: string; value: BookAccent }[] = [
 
 const defaultDraft = {
   title: "New reading system",
-  author: "ZoeAbode Editorial",
+  author: "Zoe's BookSphere Editorial",
   category: "Knowledge Work",
   format: "Premium ebook",
   summary: "A focused summary that turns a book into an actionable reading system.",
@@ -236,7 +236,7 @@ export function AdminDashboard() {
             Existing admins can promote another Supabase user to admin access. This keeps admin creation out of the public sign-up flow.
           </p>
           <form className="mt-4 space-y-3" onSubmit={handlePromoteAdmin}>
-            <input value={adminEmail} onChange={(event) => setAdminEmail(event.target.value)} type="email" placeholder="user@zoeabode.com" className="w-full rounded-2xl border border-(--border) bg-white px-4 py-3 text-sm outline-none transition focus:border-(--text)" />
+            <input value={adminEmail} onChange={(event) => setAdminEmail(event.target.value)} type="email" placeholder="user@zoesbooksphere.com" className="w-full rounded-2xl border border-(--border) bg-white px-4 py-3 text-sm outline-none transition focus:border-(--text)" />
             <button type="submit" className="inline-flex items-center justify-center rounded-full bg-(--text) px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90">
               Promote to admin
             </button>

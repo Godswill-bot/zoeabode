@@ -2,7 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 
-const STORAGE_KEY = "zoeabode-bookmarks";
+const STORAGE_KEY = "zoes-booksphere-bookmarks";
 const subscribers = new Set<() => void>();
 const EMPTY_BOOKMARKS: string[] = [];
 let cachedRawBookmarks = "";

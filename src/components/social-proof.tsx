@@ -30,7 +30,7 @@ export function SocialProof() {
         <SectionHeading
           eyebrow="Social proof"
           title="Built for readers who expect clarity, not clutter."
-          description="Squareblack's homepage works because it repeats proof in different forms. ZoeAbode does the same with reader outcomes, testimonials, and usage metrics."
+          description="Squareblack's homepage works because it repeats proof in different forms. Zoe's BookSphere does the same with reader outcomes, testimonials, and usage metrics."
           align="center"
         />
 

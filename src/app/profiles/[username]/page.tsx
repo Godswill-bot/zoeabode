@@ -13,8 +13,8 @@ type ProfilePageProps = {
 export async function generateMetadata({ params }: ProfilePageProps): Promise<Metadata> {
   const resolved = await params;
   return {
-    title: `${resolved.username} | ZoeAbode`,
-    description: `Public profile for ${resolved.username} on ZoeAbode.`,
+    title: `${resolved.username} | Zoe's BookSphere`,
+    description: `Public profile for ${resolved.username} on Zoe's BookSphere.`,
   };
 }
 
@@ -29,7 +29,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           <SectionHeading
             eyebrow="Public profile"
             title="Reader identity, shelves, and recent community activity."
-            description="Profiles, posts, and shelf actions stay connected across the same ZoeAbode account identity."
+            description="Profiles, posts, and shelf actions stay connected across the same Zoe's BookSphere account identity."
           />
           <div className="mt-12">
             <PublicProfile username={resolved.username} />

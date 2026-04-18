@@ -6,8 +6,8 @@ import { SiteFooter } from "@/components/site-footer";
 import { books } from "@/data/books";
 
 export const metadata: Metadata = {
-  title: "CMS | ZoeAbode",
-  description: "Local content management preview for the ZoeAbode homepage and book shelf.",
+  title: "CMS | Zoe's BookSphere",
+  description: "Local content management preview for the Zoe's BookSphere homepage and book shelf.",
 };
 
 export default function CmsPage() {

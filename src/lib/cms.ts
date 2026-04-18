@@ -11,14 +11,14 @@ export type CmsSettings = {
   secondaryCta: string;
 };
 
-const STORAGE_KEY = "zoeabode-cms";
+const STORAGE_KEY = "zoes-booksphere-cms";
 const subscribers = new Set<() => void>();
 
 export const defaultCmsSettings: CmsSettings = {
   heroLabel: "Curated reading, built like a product",
   heroHeadline: "The reading system for people who want more than a bookshelf.",
   heroDescription:
-    "ZoeAbode is a premium knowledge platform for discovery, self-development, and digital content. It turns books into guided journeys that help readers choose faster, learn better, and return often.",
+    "Zoe's BookSphere is a premium knowledge platform for discovery, self-development, and digital content. It turns books into guided journeys that help readers choose faster, learn better, and return often.",
   featuredShelfSlug: "focus-protocol",
   primaryCta: "Start a reading stack",
   secondaryCta: "See why it works",

@@ -47,7 +47,7 @@ export function BookBrowser({ books, initialBookSlug }: BookBrowserProps) {
         <SectionHeading
           eyebrow="Library"
           title="A book showcase that behaves like a product surface."
-          description="This is the heart of ZoeAbode: browsing, bookmarking, and recommendation are all visible in one clear layout so the product feels useful right away."
+          description="This is the heart of Zoe's BookSphere: browsing, bookmarking, and recommendation are all visible in one clear layout so the product feels useful right away."
         />
 
         <div className="mt-10 flex flex-wrap items-center gap-3">

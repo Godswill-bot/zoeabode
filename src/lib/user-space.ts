@@ -63,7 +63,7 @@ type UserSpaceStore = {
   messages: ChatMessage[];
 };
 
-const STORAGE_KEY = "zoeabode-user-space";
+const STORAGE_KEY = "zoes-booksphere-user-space";
 const subscribers = new Set<() => void>();
 const EMPTY_STORE: UserSpaceStore = { profiles: [], posts: [], messages: [] };
 let cachedRawStore = "";

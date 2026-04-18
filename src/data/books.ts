@@ -25,7 +25,7 @@ export const books: Book[] = [
     id: "focus-protocol",
     slug: "focus-protocol",
     title: "The Focus Protocol",
-    author: "ZoeAbode Editorial",
+    author: "Zoe's BookSphere Editorial",
     category: "Productivity Systems",
     format: "Premium ebook",
     summary:

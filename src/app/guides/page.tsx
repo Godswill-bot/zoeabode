@@ -6,8 +6,8 @@ import { SiteFooter } from "@/components/site-footer";
 import { guidePaths } from "@/data/guides";
 
 export const metadata: Metadata = {
-  title: "Guides | ZoeAbode",
-  description: "Editorial reading paths and knowledge journeys for ZoeAbode readers.",
+  title: "Guides | Zoe's BookSphere",
+  description: "Editorial reading paths and knowledge journeys for Zoe's BookSphere readers.",
 };
 
 export default function GuidesPage() {

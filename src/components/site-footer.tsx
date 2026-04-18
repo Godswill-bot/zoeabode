@@ -13,7 +13,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_auto] lg:px-8">
         <div>
           <Link href="/" className="font-display text-3xl text-(--text)">
-            ZoeAbode
+            Zoe's BookSphere
           </Link>
           <p className="mt-3 max-w-xl text-sm leading-6 text-(--muted)">
             A premium knowledge ecosystem for readers, students, and self-development audiences
@@ -44,7 +44,7 @@ export function SiteFooter() {
               Contact
             </p>
             <div className="mt-4 space-y-3 text-sm text-(--text)">
-              <p>hello@zoeabode.com</p>
+              <p>hello@zoesbooksphere.com</p>
               <p>Curated for premium digital reading experiences.</p>
             </div>
           </div>

@@ -68,7 +68,7 @@ export function AdminLoginPanel() {
         <form className="space-y-4" onSubmit={handleSubmit}>
           <label className="block space-y-2">
             <span className="text-sm font-semibold text-(--text)">Admin email</span>
-            <input value={email} onChange={(event) => setEmail(event.target.value)} className="w-full rounded-2xl border border-(--border) bg-white px-4 py-3 text-sm outline-none transition focus:border-(--text)" type="email" placeholder="admin@zoeabode.com" />
+            <input value={email} onChange={(event) => setEmail(event.target.value)} className="w-full rounded-2xl border border-(--border) bg-white px-4 py-3 text-sm outline-none transition focus:border-(--text)" type="email" placeholder="admin@zoesbooksphere.com" />
           </label>
           <label className="block space-y-2">
             <span className="text-sm font-semibold text-(--text)">Password</span>

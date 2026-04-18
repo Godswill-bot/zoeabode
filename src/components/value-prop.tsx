@@ -6,7 +6,7 @@ export function ValueProp() {
     <section id="value" className="scroll-mt-24 border-b border-(--border-soft) bg-(--page) py-10 sm:py-14" data-reveal>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="Why ZoeAbode"
+          eyebrow="Why Zoe's BookSphere"
           title="Squareblack-style conversion flow, reimagined for books and knowledge."
           description="The structure is deliberate: headline, proof, comparison, then a strong product explanation. That order keeps the page persuasive without feeling manipulative."
         />
@@ -27,9 +27,9 @@ export function ValueProp() {
                   </div>
                   <div className="mt-4">
                     <p className="text-xs font-semibold uppercase tracking-[0.22em] text-(--muted)">
-                      ZoeAbode
+                      Zoe's BookSphere
                     </p>
-                    <p className="mt-2 text-sm leading-6 text-(--text)">{row.zoeabode}</p>
+                    <p className="mt-2 text-sm leading-6 text-(--text)">{row.booksphere}</p>
                   </div>
                 </div>
               ))}

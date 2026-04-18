@@ -21,12 +21,12 @@ export async function generateMetadata({
 
   if (!book) {
     return {
-      title: "ZoeAbode",
+      title: "Zoe's BookSphere",
     };
   }
 
   return {
-    title: `${book.title} | ZoeAbode`,
+    title: `${book.title} | Zoe's BookSphere`,
     description: book.summary,
   };
 }
@@ -49,7 +49,7 @@ export default async function BookPage({
     <main className="bg-(--page)">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8">
         <Link href="/" className="font-display text-2xl text-(--text)">
-          ZoeAbode
+          Zoe's BookSphere
         </Link>
         <Link
           href="/library"

@@ -29,7 +29,7 @@ export type Step = {
 export type ComparisonRow = {
   label: string;
   traditional: string;
-  zoeabode: string;
+  booksphere: string;
 };
 
 export const stats: Stat[] = [
@@ -60,7 +60,7 @@ export const valuePropositions: Feature[] = [
     eyebrow: "Curated discovery",
     title: "Every shelf has a reason to exist.",
     description:
-      "ZoeAbode is built like a premium editorial product, so readers can move from curiosity to the exact next book without decision fatigue.",
+      "Zoe's BookSphere is built like a premium editorial product, so readers can move from curiosity to the exact next book without decision fatigue.",
     metric: "Less searching. More reading.",
     points: [
       "Outcome-based categories instead of endless lists.",
@@ -111,7 +111,7 @@ export const features: Feature[] = [
     eyebrow: "Bookmark system",
     title: "Keep the books that matter.",
     description:
-      "Simple saved-book behavior makes ZoeAbode feel useful on day one and gives the product a reason to bring readers back.",
+      "Simple saved-book behavior makes Zoe's BookSphere feel useful on day one and gives the product a reason to bring readers back.",
     metric: "Zero-friction saving.",
     points: [
       "Local bookmark persistence for demo-ready behavior.",
@@ -185,16 +185,16 @@ export const comparisonRows: ComparisonRow[] = [
   {
     label: "Discovery",
     traditional: "Endless catalog with no editorial direction.",
-    zoeabode: "Curated shelves organized by outcome and intent.",
+    booksphere: "Curated shelves organized by outcome and intent.",
   },
   {
     label: "Retention",
     traditional: "Users browse once and disappear.",
-    zoeabode: "Bookmarks and reading stacks create a reason to return.",
+    booksphere: "Bookmarks and reading stacks create a reason to return.",
   },
   {
     label: "Knowledge",
     traditional: "Books stay isolated from action.",
-    zoeabode: "Summaries, insights, and recommendations support follow-through.",
+    booksphere: "Summaries, insights, and recommendations support follow-through.",
   },
 ];

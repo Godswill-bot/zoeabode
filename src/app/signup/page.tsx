@@ -7,8 +7,8 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteFooter } from "@/components/site-footer";
 
 export const metadata: Metadata = {
-  title: "Sign Up | ZoeAbode",
-  description: "Create a verified ZoeAbode account to start reading, saving, and posting.",
+  title: "Sign Up | Zoe's BookSphere",
+  description: "Create a verified Zoe's BookSphere account to start reading, saving, and posting.",
 };
 
 export default function SignupPage() {

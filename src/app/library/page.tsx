@@ -7,8 +7,8 @@ import { SiteFooter } from "@/components/site-footer";
 import { books } from "@/data/books";
 
 export const metadata: Metadata = {
-  title: "Library | ZoeAbode",
-  description: "Browse the curated ZoeAbode library with bookmarks and recommendations.",
+  title: "Library | Zoe's BookSphere",
+  description: "Browse the curated Zoe's BookSphere library with bookmarks and recommendations.",
 };
 
 export default function LibraryPage() {

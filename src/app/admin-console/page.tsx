@@ -5,8 +5,8 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteFooter } from "@/components/site-footer";
 
 export const metadata: Metadata = {
-  title: "Admin Console | ZoeAbode",
-  description: "Hidden admin console for ZoeAbode operations.",
+  title: "Admin Console | Zoe's BookSphere",
+  description: "Hidden admin console for Zoe's BookSphere operations.",
   robots: { index: false, follow: false },
 };
 
@@ -18,7 +18,7 @@ export default function AdminConsolePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Admin console"
-            title="Private operational access for ZoeAbode staff."
+            title="Private operational access for Zoe's BookSphere staff."
             description="This route is intentionally hidden from the public navigation and reserved for catalog, user, and content operations."
           />
           <div className="mt-12">

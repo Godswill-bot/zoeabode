@@ -22,7 +22,7 @@ export type UploadedBook = Book & {
   uploadedAt: string;
 };
 
-const STORAGE_KEY = "zoeabode-uploaded-books";
+const STORAGE_KEY = "zoes-booksphere-uploaded-books";
 const subscribers = new Set<() => void>();
 const EMPTY_BOOKS: UploadedBook[] = [];
 let cachedRawBooks = "";

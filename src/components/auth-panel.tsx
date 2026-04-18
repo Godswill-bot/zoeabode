@@ -191,7 +191,7 @@ export function AuthPanelContent({ initialMode }: AuthPanelContentProps) {
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               className="w-full rounded-2xl border border-(--border) bg-white px-4 py-3 text-sm text-(--text) outline-none transition focus:border-(--text)"
-              placeholder="amina@zoeabode.com"
+              placeholder="amina@zoesbooksphere.com"
               type="email"
             />
           </label>

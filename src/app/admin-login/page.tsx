@@ -5,8 +5,8 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteFooter } from "@/components/site-footer";
 
 export const metadata: Metadata = {
-  title: "Admin Login | ZoeAbode",
-  description: "Private login page for ZoeAbode administrators.",
+  title: "Admin Login | Zoe's BookSphere",
+  description: "Private login page for Zoe's BookSphere administrators.",
   robots: { index: false, follow: false },
 };
 

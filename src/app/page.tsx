@@ -68,6 +68,7 @@ export default function Home() {
             title="Large animated pictures that keep the home page feeling premium."
             description="This section uses oversized imagery, soft motion, and short supporting text to make the site feel more editorial and more alive at a glance."
             align="center"
+            delay="1"
           />
 
           <div className="mt-10 grid gap-6 xl:grid-cols-3 xl:auto-rows-[minmax(280px,auto)]">
@@ -110,7 +111,8 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 xl:grid-cols-[0.9fr_1.1fr] xl:items-start">
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-(--muted)">Library</p>
+              <div data-reveal data-reveal-delay="1">
+                <p className="text-xs font-semibold uppercase tracking-[0.34em] text-(--muted)">Library</p>
               <h2 className="mt-4 font-display text-4xl leading-[0.98] tracking-[-0.05em] text-(--text) sm:text-5xl">
                 The library surface that should always be visible.
               </h2>
@@ -124,6 +126,7 @@ export default function Home() {
                 <a href="/library" className="inline-flex items-center justify-center rounded-full border border-(--border) bg-white px-6 py-3.5 text-sm font-semibold text-(--text) transition duration-300 hover:scale-[1.03] hover:border-(--border-strong)">
                   Open full library
                 </a>
+              </div>
               </div>
             </div>
 
@@ -152,6 +155,7 @@ export default function Home() {
                         title="Reader stories in a wider editorial layout."
                         description="This section uses a horizontal hero card with compact supporting cards so the content spreads across the page instead of stacking too tall."
             align="center"
+                        delay="1"
           />
                       <div className="mt-12 grid gap-6">
                         <article
@@ -221,7 +225,7 @@ export default function Home() {
                             );
                           })}
                         </div>
-          </div>
+            </div>
         </div>
       </section>
       <Suspense fallback={<div className="mx-auto mt-12 max-w-7xl px-4 sm:px-6 lg:px-8"><div className="rounded-4xl border border-(--border) bg-white px-6 py-10 text-sm text-(--muted)">Loading library preview...</div></div>}>

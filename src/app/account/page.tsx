@@ -6,8 +6,8 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteFooter } from "@/components/site-footer";
 
 export const metadata: Metadata = {
-  title: "Account | ZoeAbode",
-  description: "Manage your ZoeAbode reader profile and saved stack.",
+  title: "Account | Zoe's BookSphere",
+  description: "Manage your Zoe's BookSphere reader profile and saved stack.",
 };
 
 export default function AccountPage() {

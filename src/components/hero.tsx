@@ -21,7 +21,7 @@ export function Hero({ featuredBook, stats }: HeroProps) {
       <div className="absolute left-0 top-20 z-0 h-72 w-72 rounded-full bg-white/90 blur-3xl animate-pulse-soft" />
       <div className="absolute right-0 top-40 z-0 h-80 w-80 rounded-full bg-(--surface-soft) blur-3xl animate-pulse-soft" />
 
-      <div className="relative z-20 mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:px-8 lg:py-24 2xl:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)] 2xl:gap-20">
+      <div className="relative z-20 mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:px-8 lg:py-24 2xl:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)] 2xl:gap-20 animate-page-enter">
         <div className="min-w-0 flex flex-col justify-center" data-reveal>
           <div className="inline-flex w-fit items-center gap-2 rounded-full border border-(--border) bg-(--accent) px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-(--text) shadow-[0_12px_30px_rgba(15,23,42,0.05)] animate-float-slow">
             <span className="h-2 w-2 rounded-full bg-(--text)" />
