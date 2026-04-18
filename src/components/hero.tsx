@@ -114,22 +114,22 @@ export function Hero({ featuredBook, stats }: HeroProps) {
         </div>
 
         <div className="min-w-0 flex items-center justify-center" data-reveal data-reveal-delay="2">
-          <div className="relative w-full max-w-140 rounded-4xl border border-(--border) bg-white p-5 shadow-[0_36px_100px_rgba(15,23,42,0.08)] backdrop-blur-xl animate-float-slow">
-            <div className="absolute -left-5 top-10 hidden rounded-3xl border border-(--border) bg-white px-4 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.08)] lg:block animate-float">
+          <div className="relative w-full max-w-[52rem] rounded-4xl border border-(--border) bg-white p-4 shadow-[0_36px_100px_rgba(15,23,42,0.08)] backdrop-blur-xl animate-float-slow sm:p-5">
+            <div className="absolute -left-4 top-8 hidden w-44 rounded-3xl border border-(--border) bg-white px-4 py-2.5 shadow-[0_18px_50px_rgba(0,0,0,0.08)] lg:block animate-float">
               <p className="text-xs uppercase tracking-[0.28em] text-(--muted)">Now reading</p>
-              <p className="mt-2 max-w-35 text-sm font-semibold text-(--text)">The Focus Protocol</p>
+              <p className="mt-2 text-sm font-semibold leading-snug text-(--text)">The Focus Protocol</p>
             </div>
-            <div className="absolute -right-6 bottom-16 hidden rounded-3xl border border-(--border) bg-white px-4 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.08)] lg:block animate-float delay-1400">
+            <div className="absolute -right-5 bottom-12 hidden w-40 rounded-3xl border border-(--border) bg-white px-4 py-2.5 shadow-[0_18px_50px_rgba(0,0,0,0.08)] lg:block animate-float delay-1400">
               <p className="text-xs uppercase tracking-[0.28em] text-(--muted)">Saved</p>
-              <p className="mt-2 max-w-35 text-sm font-semibold text-(--text)">Quiet Wealth</p>
+              <p className="mt-2 text-sm font-semibold leading-snug text-(--text)">Quiet Wealth</p>
             </div>
-            <div className="rounded-3xl border border-(--border) bg-linear-to-br from-white via-[#fbfbf9] to-[#f2f4f7] p-5 transition duration-300 hover:scale-[1.01]">
+            <div className="rounded-3xl border border-(--border) bg-linear-to-br from-white via-[#fbfbf9] to-[#f2f4f7] p-4 transition duration-300 hover:scale-[1.01] sm:p-5">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--muted)">
                     Featured shelf
                   </p>
-                  <h2 className="mt-3 font-display text-3xl font-bold leading-tight text-(--text)">
+                  <h2 className="mt-2 max-w-[12ch] font-display text-[2.65rem] font-bold leading-[0.96] tracking-[-0.06em] text-(--text) sm:text-5xl">
                     {featuredBook.title}
                   </h2>
                   <p className="mt-2 text-sm text-(--muted)">By {featuredBook.author}</p>
@@ -139,11 +139,11 @@ export function Hero({ featuredBook, stats }: HeroProps) {
                 </div>
               </div>
 
-              <p className="mt-5 max-w-xl text-sm leading-7 text-(--muted)">
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-(--muted)">
                 {featuredBook.summary}
               </p>
 
-              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-3xl border border-(--border) bg-white p-4 transition duration-300 hover:scale-[1.02]">
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-(--muted)">
                     What you unlock

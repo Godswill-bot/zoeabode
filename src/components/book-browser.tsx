@@ -51,15 +51,17 @@ export function BookBrowser({ books, initialBookSlug }: BookBrowserProps) {
         />
 
         <div className="mt-10 flex flex-wrap items-center gap-3">
-          {filters.map((filter) => (
+          {filters.map((filter, index) => (
             <Link
               key={filter}
               href={filterHref(filter)}
-              className={`tab-chip rounded-full border px-4 py-2 text-sm font-semibold ${
+              className={`tab-chip inline-flex items-center justify-center whitespace-nowrap rounded-full border px-4 py-2 text-sm font-semibold ${
                 activeFilter === filter
-                  ? "border-(--text) bg-(--text) text-white"
+                  ? "border-(--text) bg-(--text) text-white shadow-[0_14px_30px_rgba(15,23,42,0.16)]"
                   : "border-(--border) bg-(--surface) text-(--muted) hover:border-(--text) hover:text-(--text)"
               }`}
+              data-reveal
+              data-reveal-delay={String((index % 3) + 1)}
             >
               {filter}
             </Link>
