@@ -10,6 +10,12 @@ export function ScrollReveal() {
     const body = document.body;
     body.classList.add("reveal-ready");
 
+    const syncScrollState = () => {
+      body.classList.toggle("has-scrolled", window.scrollY > 12);
+    };
+
+    syncScrollState();
+
     const observedTargets = new WeakSet<HTMLElement>();
     let observer: IntersectionObserver | null = null;
 
@@ -70,6 +76,8 @@ export function ScrollReveal() {
       attachTargets();
     });
 
+    window.addEventListener("scroll", syncScrollState, { passive: true });
+
     mutationObserver.observe(document.body, {
       childList: true,
       subtree: true,
@@ -77,6 +85,7 @@ export function ScrollReveal() {
 
     return () => {
       window.clearTimeout(fallbackTimer);
+      window.removeEventListener("scroll", syncScrollState);
       mutationObserver.disconnect();
       observer?.disconnect();
     };

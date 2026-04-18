@@ -32,7 +32,7 @@ export function PageHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="tab-chip inline-flex items-center rounded-full px-3 py-2 text-sm font-medium text-(--muted) hover:bg-(--surface) hover:text-(--text)"
+              className="site-nav-tab tab-chip inline-flex items-center rounded-full px-3 py-2 text-sm font-medium text-(--muted) hover:bg-(--surface) hover:text-(--text)"
               data-reveal
               data-reveal-delay={String((index % 3) + 1)}
             >
