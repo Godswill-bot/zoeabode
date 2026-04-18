@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import type { Book } from "@/data/books";
@@ -20,10 +20,18 @@ export function BookBrowser({ books, initialBookSlug }: BookBrowserProps) {
   const searchParams = useSearchParams();
   const queryFilter = searchParams.get("filter") ?? "Featured";
   const [selectedSlug, setSelectedSlug] = useState(initialBookSlug);
+  const [isHydrated, setIsHydrated] = useState(false);
   const bookmarkIds = useBookmarks();
   const uploadedBooks = useUploadedBooks();
 
-  const catalogBooks = useMemo(() => [...uploadedBooks, ...books], [books, uploadedBooks]);
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  const stableUploadedBooks = isHydrated ? uploadedBooks : [];
+  const stableBookmarkIds = isHydrated ? bookmarkIds : [];
+
+  const catalogBooks = useMemo(() => [...stableUploadedBooks, ...books], [books, stableUploadedBooks]);
   const activeFilter = queryFilter;
 
   const visibleBooks = getVisibleBooks(catalogBooks, activeFilter);
@@ -31,7 +39,7 @@ export function BookBrowser({ books, initialBookSlug }: BookBrowserProps) {
     findBookBySlug(visibleBooks, selectedSlug) ?? visibleBooks[0] ?? books[0];
   const recommendations = getRecommendedBooks(catalogBooks, selectedBook, 3);
   const filters = getLibraryFilters(catalogBooks);
-  const savedBooks = catalogBooks.filter((book) => bookmarkIds.includes(book.id));
+  const savedBooks = catalogBooks.filter((book) => stableBookmarkIds.includes(book.id));
 
   function filterHref(filter: string) {
     return `/library?filter=${encodeURIComponent(filter)}`;
@@ -42,7 +50,12 @@ export function BookBrowser({ books, initialBookSlug }: BookBrowserProps) {
   }
 
   return (
-    <section id="library" className="scroll-mt-24 border-b border-(--border-soft) bg-(--page) py-16 sm:py-20" data-reveal>
+    <section
+      id="library"
+      className="scroll-mt-24 border-b border-(--border-soft) bg-(--page) py-16 sm:py-20"
+      data-reveal
+      data-no-reveal
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Library"
@@ -71,14 +84,14 @@ export function BookBrowser({ books, initialBookSlug }: BookBrowserProps) {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-6 xl:grid-cols-[1.05fr_0.95fr] xl:items-start">
+        <div className="mt-8 grid gap-6 xl:grid-cols-[0.72fr_1.28fr] 2xl:grid-cols-[0.78fr_1.22fr] xl:items-start">
           <div className="grid auto-rows-min items-start gap-4 md:grid-cols-2">
             {visibleBooks.map((book, index) => (
               <BookCard
                 key={book.id}
                 book={book}
                 selected={book.slug === selectedBook.slug}
-                bookmarked={bookmarkIds.includes(book.id)}
+                bookmarked={stableBookmarkIds.includes(book.id)}
                 actionLabel="Preview"
                 actionHref={`/books/${book.slug}`}
                 onAction={() => setSelectedSlug(book.slug)}

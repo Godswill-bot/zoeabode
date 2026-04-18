@@ -19,10 +19,10 @@ export function BookDetailPanel({ book, recommendations }: BookDetailPanelProps)
     <div className="overflow-hidden rounded-[2.25rem] border border-(--border) bg-(--surface) shadow-[0_28px_80px_rgba(15,23,42,0.12)] xl:min-w-0">
       <div className={`h-2 bg-linear-to-r ${accentMap[book.accent]}`} />
 
-      <div className="grid gap-0 xl:grid-cols-[0.92fr_1.08fr]">
+      <div className="grid gap-0 xl:grid-cols-[0.76fr_1.24fr] 2xl:grid-cols-[0.82fr_1.18fr]">
         <aside className="relative overflow-hidden border-b border-(--border) bg-[linear-gradient(160deg,rgba(255,255,255,0.98),rgba(250,248,244,0.96))] p-5 sm:p-7 xl:border-b-0 xl:border-r xl:border-(--border)">
           <div className={`absolute inset-x-0 top-0 h-20 bg-linear-to-r ${accentMap[book.accent]} opacity-15`} />
-          <div className="relative flex h-full min-h-72 flex-col justify-between rounded-4xl border border-(--border) bg-white px-5 py-6 shadow-[0_24px_70px_rgba(15,23,42,0.08)] sm:px-6 xl:min-h-80 xl:px-6 xl:py-6">
+          <div className="relative flex h-full min-h-56 flex-col justify-between rounded-4xl border border-(--border) bg-white px-4 py-4.5 shadow-[0_24px_70px_rgba(15,23,42,0.08)] sm:px-5 sm:py-5 xl:min-h-56 xl:px-5 xl:py-4.5 2xl:min-h-60">
             <div className="flex items-center justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-(--muted)">
@@ -37,68 +37,68 @@ export function BookDetailPanel({ book, recommendations }: BookDetailPanelProps)
               </div>
             </div>
 
-            <div className="mt-8 space-y-4">
+            <div className="mt-5 space-y-3">
               <div className="space-y-2">
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-(--muted)">
                   The BookSphere edition
                 </p>
-                <h3 className="max-w-none text-balance font-display text-3xl font-bold leading-[0.95] tracking-[-0.05em] text-(--text) sm:text-4xl xl:text-[3.1rem]">
+                <h3 className="max-w-[14ch] text-balance font-display text-[2.55rem] font-bold leading-[0.92] tracking-[-0.06em] text-(--text) sm:text-4xl xl:text-[2.25rem] 2xl:text-[2.45rem]">
                   {book.title}
                 </h3>
                 <p className="text-sm font-medium text-(--muted)">By {book.author}</p>
               </div>
 
-              <div className="rounded-3xl border border-(--border) bg-(--surface-soft) p-5">
+              <div className="rounded-3xl border border-(--border) bg-(--surface-soft) p-3.5">
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--muted)">
                   Promise
                 </p>
-                <p className="mt-3 text-base leading-7 text-(--text)">{book.outcome}</p>
+                <p className="mt-2.5 text-[0.95rem] leading-6 text-(--text)">{book.outcome}</p>
               </div>
             </div>
 
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-[1.25rem] border border-(--border) bg-(--surface-soft) px-4 py-4">
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-[1.25rem] border border-(--border) bg-(--surface-soft) px-4 py-3.5">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">Format</p>
-                <p className="mt-2 text-sm font-semibold text-(--text)">{book.format}</p>
+                <p className="mt-1.5 text-sm font-semibold text-(--text)">{book.format}</p>
               </div>
-              <div className="rounded-[1.25rem] border border-(--border) bg-(--surface-soft) px-4 py-4">
+              <div className="rounded-[1.25rem] border border-(--border) bg-(--surface-soft) px-4 py-3.5">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">Read time</p>
-                <p className="mt-2 text-sm font-semibold text-(--text)">{book.readTime}</p>
+                <p className="mt-1.5 text-sm font-semibold text-(--text)">{book.readTime}</p>
               </div>
             </div>
           </div>
         </aside>
 
-        <section className="border-t border-(--border) bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(252,250,246,0.98))] p-5 sm:p-7 xl:border-l xl:border-t-0 xl:border-(--border)">
-          <div className="grid gap-5 xl:grid-cols-[0.92fr_1.08fr]">
-            <div className="rounded-[1.75rem] border border-(--border) bg-white p-4 shadow-[0_14px_40px_rgba(15,23,42,0.05)] sm:p-5">
+        <section className="border-t border-(--border) bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(252,250,246,0.98))] p-4.5 sm:p-6 xl:border-l xl:border-t-0 xl:border-(--border)">
+          <div className="grid gap-3.5 xl:grid-cols-[0.78fr_1.22fr] 2xl:grid-cols-[0.84fr_1.16fr]">
+            <div className="rounded-[1.75rem] border border-(--border) bg-white p-4 shadow-[0_14px_40px_rgba(15,23,42,0.05)] sm:p-4.5">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--muted)">
                 Inside the cover
               </p>
-              <p className="mt-3 text-sm leading-7 text-(--muted) sm:text-base">
+              <p className="mt-2.5 text-sm leading-6.5 text-(--muted) sm:text-[0.95rem]">
                 {book.summary}
               </p>
 
-              <div className="mt-6 space-y-3">
-                <div className="rounded-2xl bg-(--surface-soft) p-4">
+              <div className="mt-4 space-y-2.5">
+                <div className="rounded-2xl bg-(--surface-soft) p-3.5">
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">Audience</p>
-                  <p className="mt-2 text-sm leading-6 text-(--text)">{book.audience}</p>
+                  <p className="mt-1.5 text-sm leading-6 text-(--text)">{book.audience}</p>
                 </div>
-                <div className="rounded-2xl bg-(--surface-soft) p-4">
+                <div className="rounded-2xl bg-(--surface-soft) p-3.5">
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">Saved theme</p>
-                  <p className="mt-2 text-sm leading-6 text-(--text)">{book.tags[0]}</p>
+                  <p className="mt-1.5 text-sm leading-6 text-(--text)">{book.tags[0]}</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-[1.75rem] border border-(--border) bg-white p-4 shadow-[0_14px_40px_rgba(15,23,42,0.05)] sm:p-5">
+            <div className="rounded-[1.75rem] border border-(--border) bg-white p-4 shadow-[0_14px_40px_rgba(15,23,42,0.05)] sm:p-4.5">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--muted)">
                 Reading path
               </p>
-              <ol className="mt-4 space-y-3">
+              <ol className="mt-3.5 space-y-2">
                 {book.chapters.map((chapter, index) => (
-                  <li key={chapter} className="flex items-start gap-4 text-sm leading-6 text-(--text)">
-                    <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-(--border) bg-(--surface-soft) text-xs font-semibold text-(--muted)">
+                  <li key={chapter} className="flex items-start gap-3 text-sm leading-5.5 text-(--text)">
+                    <span className="mt-0.5 inline-flex h-6.5 w-6.5 shrink-0 items-center justify-center rounded-full border border-(--border) bg-(--surface-soft) text-[0.7rem] font-semibold text-(--muted)">
                       {index + 1}
                     </span>
                     <span>{chapter}</span>
@@ -108,33 +108,33 @@ export function BookDetailPanel({ book, recommendations }: BookDetailPanelProps)
             </div>
           </div>
 
-          <div className="mt-5 grid gap-3 md:grid-cols-3">
-            <div className="rounded-[1.25rem] border border-(--border) bg-(--surface-soft) p-4">
+          <div className="mt-3.5 grid gap-3 md:grid-cols-3">
+            <div className="rounded-[1.25rem] border border-(--border) bg-(--surface-soft) p-3.5">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">Why it matters</p>
-              <div className="mt-3 space-y-3">
+              <div className="mt-2.5 space-y-2.5">
                 {book.insights.map((insight) => (
-                  <div key={insight} className="flex items-start gap-3 text-sm leading-6 text-(--text)">
-                    <span className="mt-2 h-2 w-2 rounded-full bg-(--text)" />
+                  <div key={insight} className="flex items-start gap-3 text-sm leading-5.5 text-(--text)">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-(--text)" />
                     <span>{insight}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="rounded-[1.25rem] border border-(--border) bg-white p-4">
+            <div className="rounded-[1.25rem] border border-(--border) bg-white p-3.5">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">Price</p>
-              <p className="mt-2 font-display text-2xl text-(--text)">{book.price}</p>
+              <p className="mt-1.5 font-display text-[1.65rem] text-(--text)">{book.price}</p>
             </div>
-            <div className="rounded-[1.25rem] border border-(--border) bg-white p-4">
+            <div className="rounded-[1.25rem] border border-(--border) bg-white p-3.5">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">Rating</p>
-              <p className="mt-2 font-display text-2xl text-(--text)">{book.rating.toFixed(1)} / 5</p>
+              <p className="mt-1.5 font-display text-[1.65rem] text-(--text)">{book.rating.toFixed(1)} / 5</p>
             </div>
           </div>
 
-          <div className="mt-5 rounded-3xl border border-(--border) bg-(--surface-soft) p-5">
+          <div className="mt-3.5 rounded-3xl border border-(--border) bg-(--surface-soft) p-3.5">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">
               Book notes
             </p>
-            <p className="mt-3 text-sm leading-7 text-(--text)">
+            <p className="mt-1.5 text-sm leading-5.5 text-(--text)">
               The structure is intentionally book-like: a cover on the left, a spine in the middle,
               and a readable interior on the right. That makes The Focus Protocol feel like a real
               title instead of a generic product block.
@@ -144,13 +144,13 @@ export function BookDetailPanel({ book, recommendations }: BookDetailPanelProps)
       </div>
 
       {recommendations && recommendations.length > 0 ? (
-        <div className="rounded-3xl border border-(--border) bg-(--surface-soft) p-5">
+        <div className="rounded-3xl border border-(--border) bg-(--surface-soft) p-4">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">
             Recommended next
           </p>
-          <div className="mt-4 grid gap-3 md:grid-cols-3">
+          <div className="mt-3 grid gap-3 md:grid-cols-3">
             {recommendations.map((recommendation) => (
-              <div key={recommendation.slug} className="rounded-2xl bg-white p-4">
+              <div key={recommendation.slug} className="rounded-2xl bg-white p-3.5">
                 <p className="font-semibold text-(--text)">{recommendation.title}</p>
                 <p className="mt-1 text-sm text-(--muted)">{recommendation.category}</p>
                 <p className="mt-3 text-sm leading-6 text-(--muted)">

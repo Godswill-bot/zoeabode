@@ -21,7 +21,8 @@ export function ScrollReveal() {
     }
 
     const attachTargets = () => {
-      const targets = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+      const targets = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"))
+        .filter((target) => !target.closest("[data-no-reveal]"));
 
       if (targets.length === 0) {
         return;
@@ -57,6 +58,10 @@ export function ScrollReveal() {
 
     const fallbackTimer = window.setTimeout(() => {
       document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((target) => {
+        if (target.closest("[data-no-reveal]")) {
+          return;
+        }
+
         target.classList.add("is-visible");
       });
     }, 450);
