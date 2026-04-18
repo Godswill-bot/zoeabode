@@ -57,9 +57,10 @@ body[data-theme="light"] {
 
 body.reveal-ready [data-reveal] {
 	opacity: 0;
-	transform: translate3d(0, 42px, 0) scale(0.97);
-	transition-property: opacity, transform;
-	transition-duration: 1100ms;
+	transform: translate3d(0, 28px, 0) scale(0.985);
+	filter: blur(6px);
+	transition-property: opacity, transform, filter;
+	transition-duration: 950ms;
 	transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 	will-change: opacity, transform;
 }
@@ -67,6 +68,7 @@ body.reveal-ready [data-reveal] {
 body.reveal-ready [data-reveal].is-visible {
 	opacity: 1;
 	transform: translate3d(0, 0, 0) scale(1);
+	filter: blur(0);
 }
 
 body.reveal-ready [data-no-reveal],
@@ -224,6 +226,7 @@ body.reveal-ready [data-reveal-delay="6"] {
 		animation: none;
 		opacity: 1;
 		transform: none;
+		filter: none;
 		transition: none;
 	}
 
