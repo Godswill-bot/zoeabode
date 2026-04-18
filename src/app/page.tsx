@@ -20,15 +20,6 @@ import peepsPortrait from "../../peeps.webp";
 import peoplePortrait from "../../people.webp";
 import girlPortrait from "../../girl.jpg";
 
-const testimonialTiles = [
-  { kind: "portrait" as const, testimonial: testimonials[0], portrait: peepsPortrait, className: "lg:row-span-2" },
-  { kind: "quote" as const, testimonial: testimonials[0], className: "lg:col-span-1" },
-  { kind: "portrait" as const, testimonial: testimonials[1], portrait: peoplePortrait, className: "lg:row-span-2" },
-  { kind: "quote" as const, testimonial: testimonials[1], className: "lg:col-span-1" },
-  { kind: "quote" as const, testimonial: testimonials[2], className: "lg:col-span-1" },
-  { kind: "portrait" as const, testimonial: testimonials[2], portrait: girlPortrait, className: "lg:row-span-2" },
-];
-
 const visualStories = [
   {
     image: rLandscape,
@@ -158,63 +149,72 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Testimonials"
-                        title="Reader stories in a calmer editorial layout."
-                        description="This section stays visually separate from social proof by using one featured portrait card and two supporting quote cards instead of a grid wall."
+                        title="Reader stories in a wider editorial layout."
+                        description="This section uses a horizontal hero card with compact supporting cards so the content spreads across the page instead of stacking too tall."
             align="center"
           />
-                      <div className="mt-12 grid gap-6 xl:grid-cols-[1.15fr_0.85fr] xl:items-start">
+                      <div className="mt-12 grid gap-6">
                         <article
-                          className="group relative overflow-hidden rounded-4xl border border-(--border) bg-(--surface) shadow-[0_30px_90px_rgba(15,23,42,0.08)]"
+                          className="group overflow-hidden rounded-4xl border border-(--border) bg-(--surface) shadow-[0_30px_90px_rgba(15,23,42,0.08)]"
                           data-reveal
                           data-reveal-delay="1"
                         >
-                          <div className="relative aspect-[4/5] overflow-hidden bg-(--surface-soft)">
-                            <Image src={peepsPortrait} alt={testimonials[0].name} className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" />
-                            <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(15,23,42,0.84),rgba(15,23,42,0.08)_56%,rgba(15,23,42,0.22))]" />
-                            <div className="absolute left-6 top-6 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-white backdrop-blur-md">
-                              Featured reader
+                          <div className="grid gap-0 lg:grid-cols-[1.12fr_0.88fr]">
+                            <div className="relative min-h-88 overflow-hidden bg-(--surface-soft) lg:min-h-112">
+                              <Image src={peepsPortrait} alt={testimonials[0].name} className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" />
+                              <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(15,23,42,0.82),rgba(15,23,42,0.12)_58%,rgba(15,23,42,0.18))]" />
+                              <div className="absolute left-6 top-6 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-white backdrop-blur-md">
+                                Featured reader
+                              </div>
                             </div>
-                            <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-8">
-                              <p className="max-w-xl text-[1.35rem] leading-[1.18] tracking-[-0.04em] sm:text-[1.95rem]">
-                                {testimonials[0].quote}
-                              </p>
-                              <div className="mt-5 border-t border-white/15 pt-5">
-                                <p className="font-semibold">{testimonials[0].name}</p>
-                                <p className="mt-1 text-sm text-white/80">{testimonials[0].role}</p>
-                                <p className="mt-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/70">
-                                  {testimonials[0].context}
+                            <div className="flex flex-col justify-between gap-6 p-6 sm:p-8 lg:min-h-112">
+                              <div>
+                                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-(--muted)">{testimonials[0].name}</p>
+                                <p className="mt-4 max-w-2xl text-[1.4rem] leading-[1.22] tracking-[-0.04em] text-(--text) sm:text-[1.9rem]">
+                                  {testimonials[0].quote}
                                 </p>
+                              </div>
+                              <div className="grid gap-3 border-t border-(--border-soft) pt-5 sm:grid-cols-3">
+                                <div className="rounded-3xl border border-(--border) bg-(--surface-soft) p-4">
+                                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--muted)">Role</p>
+                                  <p className="mt-2 text-sm leading-6 text-(--text)">{testimonials[0].role}</p>
+                                </div>
+                                <div className="rounded-3xl border border-(--border) bg-(--surface-soft) p-4">
+                                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--muted)">Rating</p>
+                                  <p className="mt-2 text-sm leading-6 text-(--text)">{testimonials[0].rating.toFixed(1)} / 5</p>
+                                </div>
+                                <div className="rounded-3xl border border-(--border) bg-(--surface-soft) p-4">
+                                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-(--muted)">Context</p>
+                                  <p className="mt-2 text-sm leading-6 text-(--text)">{testimonials[0].context}</p>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </article>
 
-                        <div className="grid gap-4">
+                        <div className="grid gap-4 lg:grid-cols-2">
                           {[testimonials[1], testimonials[2]].map((testimonial, index) => {
                             const portrait = index === 0 ? peoplePortrait : girlPortrait;
 
                             return (
                               <article
                                 key={testimonial.name}
-                                className="grid gap-5 rounded-4xl border border-(--border) bg-(--surface) p-6 shadow-[0_24px_80px_rgba(15,23,42,0.06)] sm:grid-cols-[112px_1fr] sm:items-center"
+                                className="flex items-center gap-4 rounded-4xl border border-(--border) bg-(--surface) p-5 shadow-[0_24px_80px_rgba(15,23,42,0.06)]"
                                 data-reveal
                                 data-reveal-delay={String(index + 2)}
                               >
-                                <div className="overflow-hidden rounded-3xl border border-(--border) bg-(--surface-soft)">
+                                <div className="h-24 w-24 shrink-0 overflow-hidden rounded-3xl border border-(--border) bg-(--surface-soft)">
                                   <Image src={portrait} alt={testimonial.name} className="h-full w-full object-cover" />
                                 </div>
-                                <div className="space-y-4">
-                                  <p className="text-[1.15rem] leading-[1.35] tracking-[-0.03em] text-(--text) sm:text-[1.35rem]">
+                                <div className="min-w-0 flex-1 space-y-3">
+                                  <p className="text-[1.05rem] leading-[1.35] tracking-[-0.025em] text-(--text) sm:text-[1.2rem]">
                                     {testimonial.quote}
                                   </p>
-                                  <div className="flex items-start justify-between gap-4 border-t border-(--border-soft) pt-4">
-                                    <div>
-                                      <p className="font-semibold text-(--text)">{testimonial.name}</p>
-                                      <p className="text-sm text-(--muted)">{testimonial.role}</p>
-                                    </div>
-                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">
-                                      {testimonial.context}
-                                    </p>
+                                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-(--border-soft) pt-3 text-sm">
+                                    <p className="font-semibold text-(--text)">{testimonial.name}</p>
+                                    <span className="text-(--muted)">{testimonial.role}</span>
+                                    <span className="text-(--muted)">•</span>
+                                    <span className="text-(--muted)">{testimonial.context}</span>
                                   </div>
                                 </div>
                               </article>
