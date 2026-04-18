@@ -66,6 +66,9 @@ type UserSpaceStore = {
 const STORAGE_KEY = "zoes-booksphere-user-space";
 const subscribers = new Set<() => void>();
 const EMPTY_STORE: UserSpaceStore = { profiles: [], posts: [], messages: [] };
+const EMPTY_PROFILES: UserProfile[] = [];
+const EMPTY_POSTS: CommunityPost[] = [];
+const EMPTY_MESSAGES: ChatMessage[] = [];
 let cachedRawStore = "";
 let cachedStore: UserSpaceStore = EMPTY_STORE;
 
@@ -327,7 +330,7 @@ export function useProfiles() {
   return useSyncExternalStore(
     subscribe,
     () => readStore().profiles,
-    () => [],
+    () => EMPTY_PROFILES,
   );
 }
 
@@ -359,7 +362,7 @@ export function useCommunityPosts() {
   return useSyncExternalStore(
     subscribe,
     () => readStore().posts,
-    () => [],
+    () => EMPTY_POSTS,
   );
 }
 
@@ -437,7 +440,7 @@ export function useChatMessages() {
   return useSyncExternalStore(
     subscribe,
     () => readStore().messages,
-    () => [],
+    () => EMPTY_MESSAGES,
   );
 }
 

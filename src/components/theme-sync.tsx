@@ -12,7 +12,7 @@ export function ThemeSync() {
     const theme = profile?.theme ?? session?.theme ?? "light";
     document.documentElement.dataset.theme = theme;
     document.body.dataset.theme = theme;
-  }, [profile?.theme, session]);
+  }, [profile?.theme, session?.theme]);
 
   return null;
 }

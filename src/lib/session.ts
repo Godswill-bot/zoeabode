@@ -21,6 +21,7 @@ export type SessionUser = {
 
 const subscribers = new Set<() => void>();
 let cachedAuthSession: Session | null = null;
+let cachedSessionUser: SessionUser | null = null;
 let authInitialized = false;
 let authListenerReady = false;
 
@@ -39,6 +40,10 @@ function authUserToSessionUser(user: User, accessToken: string): SessionUser {
     role: (user.app_metadata?.role as "user" | "admin" | undefined) ?? "user",
     accessToken,
   };
+}
+
+function setCachedSessionUser(session: Session | null) {
+  cachedSessionUser = session?.user ? authUserToSessionUser(session.user, session.access_token) : null;
 }
 
 function notifySubscribers() {
@@ -78,6 +83,7 @@ async function initializeAuth() {
 
   const { data } = await client.auth.getSession();
   cachedAuthSession = data.session;
+  setCachedSessionUser(cachedAuthSession);
   if (cachedAuthSession?.user) {
     ensureProfileFromAuthUser(cachedAuthSession.user);
     void syncUserRegistration({
@@ -102,6 +108,7 @@ async function initializeAuth() {
     authListenerReady = true;
     client.auth.onAuthStateChange((_event, session) => {
       cachedAuthSession = session;
+      setCachedSessionUser(session);
       if (session?.user) {
         ensureProfileFromAuthUser(session.user);
         void syncUserRegistration({
@@ -130,11 +137,7 @@ function readSession() {
     return null;
   }
 
-  if (cachedAuthSession?.user) {
-    return authUserToSessionUser(cachedAuthSession.user, cachedAuthSession.access_token);
-  }
-
-  return null;
+  return cachedSessionUser;
 }
 
 function subscribe(callback: () => void) {
