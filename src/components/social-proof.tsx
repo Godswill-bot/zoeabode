@@ -5,13 +5,22 @@ import peepsPortrait from "../../peeps.webp";
 import peoplePortrait from "../../people.webp";
 import girlPortrait from "../../girl.jpg";
 
-const socialTiles = [
-  { kind: "portrait" as const, testimonial: testimonials[0], portrait: peepsPortrait, className: "lg:row-span-2" },
-  { kind: "quote" as const, testimonial: testimonials[0], className: "lg:col-span-1" },
-  { kind: "portrait" as const, testimonial: testimonials[1], portrait: peoplePortrait, className: "lg:row-span-2" },
-  { kind: "quote" as const, testimonial: testimonials[1], className: "lg:col-span-1" },
-  { kind: "quote" as const, testimonial: testimonials[2], className: "lg:col-span-1" },
-  { kind: "portrait" as const, testimonial: testimonials[2], portrait: girlPortrait, className: "lg:row-span-2" },
+const socialCards = [
+  {
+    testimonial: testimonials[0],
+    portrait: peepsPortrait,
+    accent: "from-[#191919] via-[#313131] to-[#575757]",
+  },
+  {
+    testimonial: testimonials[1],
+    portrait: peoplePortrait,
+    accent: "from-[#fafafa] via-[#f0f0f0] to-[#dedede]",
+  },
+  {
+    testimonial: testimonials[2],
+    portrait: girlPortrait,
+    accent: "from-[#1e1e1e] via-[#2f2f2f] to-[#505050]",
+  },
 ];
 
 export function SocialProof() {
@@ -25,69 +34,53 @@ export function SocialProof() {
           align="center"
         />
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {stats.map((stat, index) => (
-            <article key={stat.label} className="rounded-3xl border border-(--border) bg-(--surface) p-6 shadow-[0_24px_80px_rgba(15,23,42,0.06)] transition duration-300 hover:scale-[1.03]" data-reveal data-reveal-delay={String((index % 3) + 1)}>
-              <p className="font-display text-4xl leading-none text-(--text)">{stat.value}</p>
-              <p className="mt-3 text-sm font-semibold uppercase tracking-[0.22em] text-(--muted)">
-                {stat.label}
-              </p>
-              <p className="mt-3 text-sm leading-6 text-(--muted)">{stat.detail}</p>
-            </article>
-          ))}
+        <div className="mt-10 overflow-x-auto pb-8 scrollbar-hide">
+          <div className="flex gap-6 pb-4">
+            {stats.map((stat, index) => (
+              <article 
+                key={stat.label} 
+                className="w-70 shrink-0 rounded-3xl border border-(--border) bg-(--surface) p-6 shadow-[0_24px_80px_rgba(15,23,42,0.06)] transition duration-300 hover:scale-[1.03]" 
+                data-reveal 
+                data-reveal-delay={String((index % 3) + 1)}
+              >
+                <p className="font-display text-4xl leading-none text-(--text)">{stat.value}</p>
+                <p className="mt-3 text-sm font-semibold uppercase tracking-[0.22em] text-(--muted)">{stat.label}</p>
+                <p className="mt-3 text-sm leading-6 text-(--muted)">{stat.detail}</p>
+              </article>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-4 xl:auto-rows-[210px]">
-          {socialTiles.map((tile, index) => {
-            const testimonial = tile.testimonial;
-
-            if (tile.kind === "portrait") {
-              return (
-                <article
-                  key={`${testimonial.name}-social-portrait-${index}`}
-                  className={`group relative overflow-hidden rounded-4xl border border-(--border) bg-(--surface) shadow-[0_24px_80px_rgba(15,23,42,0.08)] ${tile.className}`}
-                  data-reveal
-                  data-reveal-delay={String((index % 3) + 1)}
-                >
-                  <div className="absolute inset-0">
-                    <Image src={tile.portrait} alt={testimonial.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" />
-                  </div>
-                  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(15,23,42,0.9),rgba(15,23,42,0.12)_55%,rgba(15,23,42,0.25))]" />
-                  <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/70">{testimonial.name}</p>
-                    <p className="mt-2 text-xl font-display font-bold leading-[1.14] tracking-[-0.04em] sm:text-[1.65rem]">
-                      {testimonial.quote}
-                    </p>
-                    <p className="mt-3 text-sm text-white/80">{testimonial.role}</p>
-                  </div>
-                </article>
-              );
-            }
-
-            return (
+        <div className="mt-8 overflow-x-auto pb-4 scrollbar-hide">
+          <div className="flex w-max gap-5 pr-4 snap-x snap-mandatory">
+            {socialCards.map((card, index) => (
               <article
-                key={`${testimonial.name}-social-quote-${index}`}
-                className={`flex min-h-80 flex-col justify-between rounded-4xl border border-(--border) bg-(--surface) p-7 shadow-[0_24px_80px_rgba(15,23,42,0.06)] ${tile.className}`}
+                key={card.testimonial.name}
+                className="group relative h-105 w-80 shrink-0 snap-center overflow-hidden rounded-4xl border border-(--border) bg-(--surface) shadow-[0_24px_80px_rgba(15,23,42,0.08)] sm:h-115 sm:w-95"
                 data-reveal
                 data-reveal-delay={String((index % 3) + 1)}
               >
-                <p className="max-w-2xl text-[1.25rem] leading-[1.28] tracking-[-0.035em] text-(--text) sm:text-[1.45rem]">
-                  {testimonial.quote}
-                </p>
-                <div className="mt-10 border-t border-(--border) pt-5">
-                  <p className="font-semibold text-(--text)">{testimonial.name}</p>
-                  <p className="mt-1 text-sm text-(--muted)">{testimonial.role}</p>
-                  <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-(--muted)">
-                    {testimonial.context}
+                <div className="absolute inset-0">
+                  <Image src={card.portrait} alt={card.testimonial.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" />
+                </div>
+                <div className={`absolute inset-0 bg-linear-to-t ${card.accent} via-black/30 to-transparent opacity-90`} />
+                <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-7">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/70">
+                    {card.testimonial.name}
                   </p>
+                  <p className="mt-3 max-w-md text-[1.4rem] leading-[1.16] tracking-[-0.04em] sm:text-[1.8rem]">
+                    {card.testimonial.quote}
+                  </p>
+                  <div className="mt-5 border-t border-white/15 pt-4 text-sm text-white/80">
+                    <p className="font-semibold text-white">{card.testimonial.role}</p>
+                    <p className="mt-1">{card.testimonial.context}</p>
+                  </div>
                 </div>
               </article>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
-
-
